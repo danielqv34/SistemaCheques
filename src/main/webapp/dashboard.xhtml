@@ -1,0 +1,617 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="head">
+        <script type="text/javascript">
+
+            function skinChart() {
+                this.cfg.shadow = false;
+                this.cfg.title = '';
+                this.cfg.seriesColors = ['#8E24AA', '#C6FF00'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#ffffff',
+                    gridLineColor: '#F5F5F5',
+                    shadow: false,
+                };
+                this.cfg.axesDefaults = {
+                    rendererOptions: {
+                        textColor: '#546E7A'
+                    }
+                };
+                this.cfg.seriesDefaults = {
+                    shadow: false,
+                    markerOptions: {
+                        shadow: false
+                    }
+                }
+            }
+
+            function skinPie() {
+                this.cfg.seriesColors = ['#dae8ef', '#27aae1', '#33ccff', '#9fadb5'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#eaeaea',
+                    gridLineColor: '#e5ebf0',
+                    shadow: false,
+                    borderWidth: 0
+                };
+                this.cfg.seriesDefaults.shadow = false;
+            }
+        </script>
+        <style type="text/css">
+            .jqplot-target, .jqplot-axis {
+                color: #546E7A;
+            }
+        </style>
+
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
+    </ui:define>
+
+    <ui:define name="subheader">
+        Inicio 
+    </ui:define>
+
+    <ui:define name="content">
+
+        <!-- Left Column -->
+        <div class="Container70 Responsive100">
+        <h1>Sistema de Gestion de Cheques</h1>
+            
+             <img src="resources/modena-layout/images/1.png" style="display: block;margin:18%;"/>
+        <!-- Section 1 -->
+        <!--<div class="Container100">-->
+        <!--<div class="ContainerIndent">-->
+        <!--<div class="Card ShadowEffect HeiAutoOnMobile" style="min-height:275px;">-->
+            <!--<h:form>-->
+            <!--<p:tabView style="margin:-20px; border:none 0px;">-->
+            <!--<p:tab title="Billings And Stats">-->
+            <!--<div class="Container100">-->
+                <!--<div class="Container40 Responsive100">-->
+                    <!--<div class="ContainerIndent">-->
+                        <!--<div class="Container100 Fs22 BoldGray FontRobotoRegular">Your Last Unpaid Bill</div>-->
+                        <!--<div class="EmptyBox20"></div>-->
+                        <!--<div class="Container50 Fs50 FontRobotoLight Orange">-->
+                            <!--<span class="DispBlock">$ 238</span>-->
+                            <!--<span class="Gray Fs12 FontRobotoLight DispBlock">Payment Due Date - 12.09.2015</span>-->
+                        <!--</div>-->
+                        <!--<div class="Container50">-->
+                            <!--<p:button value="Pay With Card" styleClass="CyanButton Fright"-->
+                                      <!--style="width:75%"/>-->
+                            <!--<div class="EmptyBox5"></div>-->
+                            <!--<p:button value="Pay With Check" styleClass="Fright"-->
+                                      <!--style="width:75%"/>-->
+                        <!--</div>-->
+                        <!--<div class="EmptyBox10"></div>-->
+                        <!--<div class="Separator"></div>-->
+                        <!--<div class="EmptyBox10"></div>-->
+                        <!--<div class="Container100 Fs22 BoldGray FontRobotoRegular">Paid Bills</div>-->
+                        <!--<div class="EmptyBox10"></div>-->
+                        <!--<h:panelGrid columns="3">-->
+                            <!--<h:outputText value="$335,22"-->
+                                          <!--styleClass="LeadenGreen Fs20 FontRobotoLight"></h:outputText>-->
+                            <!--<h:outputText value=" - "-->
+                                          <!--styleClass="Fs20 BoldGray FontRobotoLight"></h:outputText>-->
+                            <!--<h:outputText value="18.08.2015 Paid with Credit Card"-->
+                                          <!--styleClass="Fs16 BoldGray FontRobotoLight"></h:outputText>-->
+
+                            <!--<h:outputText value="$138"-->
+                                          <!--styleClass="Blue Fs20 FontRobotoLight"></h:outputText>-->
+                            <!--<h:outputText value=" - "-->
+                                          <!--styleClass="Fs20 BoldGray FontRobotoLight"></h:outputText>-->
+                            <!--<h:outputText value="10.07.2015 Paid with PayPal"-->
+                                          <!--styleClass="Fs16 BoldGray FontRobotoLight"></h:outputText>-->
+
+                            <!--<h:outputText value="$345,13"-->
+                                          <!--styleClass="LeadenGreen Fs20 FontRobotoLight"></h:outputText>-->
+                            <!--<h:outputText value=" - "-->
+                                          <!--styleClass="Fs20 BoldGray FontRobotoLight"></h:outputText>-->
+                            <!--<h:outputText value="08.06.2015 Paid with Credit Card"-->
+                                          <!--styleClass="Fs16 BoldGray FontRobotoLight"></h:outputText>-->
+
+                            <!--<h:outputText value="$98,13"-->
+                                          <!--styleClass="LeadenGreen Fs20 FontRobotoLight"></h:outputText>-->
+                            <!--<h:outputText value=" - "-->
+                                          <!--styleClass="Fs20 BoldGray FontRobotoLight"></h:outputText>-->
+                            <!--<h:outputText value="28.05.2015 Paid with Credit Card"-->
+                                          <!--styleClass="Fs16 BoldGray FontRobotoLight"></h:outputText>-->
+                        <!--</h:panelGrid>-->
+                        <!--<div class="EmptyBox10"></div>-->
+                        <!--<div class="Separator"></div>-->
+                        <!--<div class="EmptyBox10"></div>-->
+                        <!--<div class="TexAlCenter DispBlock">-->
+                            <!--<p:button value="Get All Paid Bills"-->
+                                      <!--styleClass="BrownButton White Fs14"-->
+                                      <!--icon="fa fa-credit-card"/>-->
+                            <!--<p:button value="Print All List"-->
+                                      <!--styleClass="OrangeButton White Fs14"-->
+                                      <!--icon="fa fa-print"/>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="Container60 Responsive100">-->
+                <!--<div class="Fs22 BoldGray FontRobotoRegular">-->
+                <!--<div class="ContainerIndent">Find Dealers</div>-->
+                <!--</div>-->
+                <!--<div class="ContainerIndent">-->
+                <!--<div class="Card SoftBlueBack">-->
+                <!--<p:selectOneMenu id="console2" value="#{selectOneMenuView.console}"-->
+                <!--style="width:170px; margin:0px 10px 5px 0px;"-->
+                <!--styleClass="Fleft">-->
+                <!--<f:selectItem itemLabel="Select Country" itemValue=""/>-->
+                <!--<f:selectItem itemLabel="Turkey" itemValue="Turkey"/>-->
+                <!--<f:selectItem itemLabel="Brasil" itemValue="Brasil"/>-->
+                <!--<f:selectItem itemLabel="USA" itemValue="USA"/>-->
+                <!--<f:selectItem itemLabel="Germany" itemValue="Germany"/>-->
+                <!--<f:selectItem itemLabel="France" itemValue="France"/>-->
+                <!--<f:selectItem itemLabel="Italy" itemValue="Italy"/>-->
+                <!--</p:selectOneMenu>-->
+
+                <!--<p:button value="Find Dealers"-->
+                <!--styleClass="OrangeButton Fright FloatNoneOnMobile"/>-->
+                <!--</div>-->
+                <!--<div class="EmptyBox10"></div>-->
+                <!--<p:gmap styleClass="PosRelative SoftGrayBack"-->
+                <!--center="36.890257,30.707417"-->
+                <!--zoom="13" type="ROADMAP"-->
+                <!--style="width:100%; height:355px; z-index:1; "-->
+                <!--model="#{markersView.simpleModel}"/>-->
+
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</p:tab>-->
+                <!--<p:tab title="Failure Notification">-->
+                <!--<p:panelGrid columns="3" layout="grid"-->
+                <!--style="border:0px !important; background:none;">-->
+                <!--<p:selectOneMenu id="topic" value="#{selectOneMenuView.console}"-->
+                <!--style="width:160px; margin:0px 10px 5px 0px;">-->
+                <!--<f:selectItem itemLabel="Select Failure Topic" itemValue=""/>-->
+                <!--<f:selectItem itemLabel="GPS" itemValue="GPS"/>-->
+                <!--<f:selectItem itemLabel="OPS" itemValue="OPS"/>-->
+                <!--</p:selectOneMenu>-->
+                <!--<p:inputText styleClass="Wid70" placeholder="Name"/>-->
+                <!--<p:inputText styleClass="Wid70" placeholder="Email"/>-->
+
+                <!--<p:selectOneMenu id="category2" value="#{selectOneMenuView.console}"-->
+                <!--style="width:160px; margin:0px 10px 5px 0px;">-->
+                <!--<f:selectItem itemLabel="Select Failure Category" itemValue=""/>-->
+                <!--<f:selectItem itemLabel="GPS" itemValue="GPS"/>-->
+                <!--<f:selectItem itemLabel="OPS" itemValue="OPS"/>-->
+                <!--</p:selectOneMenu>-->
+                <!--<p:inputText styleClass="Wid70" placeholder="Phone"/>-->
+                <!--<p:inputText styleClass="Wid70" placeholder="Address"/>-->
+
+                <!--<p:selectOneMenu id="plan" value="#{selectOneMenuView.console}"-->
+                <!--style="width:160px; margin:0px 10px 5px 0px;">-->
+                <!--<f:selectItem itemLabel="Select Device Plan" itemValue=""/>-->
+                <!--<f:selectItem itemLabel="GPS" itemValue="GPS"/>-->
+                <!--<f:selectItem itemLabel="OPS" itemValue="OPS"/>-->
+                <!--</p:selectOneMenu>-->
+                <!--<p:selectBooleanCheckbox value="accept" styleClass="Fleft"-->
+                <!--itemLabel="Failure About My Devices"/>-->
+                <!--<p:selectBooleanCheckbox value="accept" styleClass="Fleft"-->
+                <!--itemLabel="Send To Me Too"/>-->
+
+                <!--<p:inputTextarea rows="5" placeholder="Your Notification Info"-->
+                <!--style="width:95%;"/>-->
+                <!--<h:outputText value=""></h:outputText>-->
+
+                <!--<p:column headerText="Action">-->
+                <!--<p:commandButton value="Clear Form" styleClass="RedButton"/>-->
+                <!--<p:commandButton value="Send Form" styleClass="CyanButton"/>-->
+                <!--</p:column>-->
+
+                <!--</p:panelGrid>-->
+                <!--</p:tab>-->
+                <!--<p:tab title="Complaint Registration">-->
+                <!--<p:panelGrid columns="3" layout="grid"-->
+                <!--style="border:0px !important; background:none;">-->
+                <!--<p:selectOneMenu id="comp" value="#{selectOneMenuView.console}"-->
+                <!--style="width:200px; margin:0px 10px 5px 0px;">-->
+                <!--<f:selectItem itemLabel="Select Complaint" itemValue=""/>-->
+                <!--<f:selectItem itemLabel="GPS" itemValue="GPS"/>-->
+                <!--<f:selectItem itemLabel="OPS" itemValue="OPS"/>-->
+                <!--</p:selectOneMenu>-->
+                <!--<p:inputText styleClass="Wid70" placeholder="Name"/>-->
+                <!--<p:inputText styleClass="Wid70" placeholder="Email"/>-->
+
+                <!--<p:selectOneMenu id="category3" value="#{selectOneMenuView.console}"-->
+                <!--style="width:200px; margin:0px 10px 5px 0px;">-->
+                <!--<f:selectItem itemLabel="Select Complaint Category" itemValue=""/>-->
+                <!--<f:selectItem itemLabel="GPS" itemValue="GPS"/>-->
+                <!--<f:selectItem itemLabel="OPS" itemValue="OPS"/>-->
+                <!--</p:selectOneMenu>-->
+                <!--<p:inputText styleClass="Wid70" placeholder="Phone"/>-->
+                <!--<p:inputText styleClass="Wid70" placeholder="Address"/>-->
+
+                <!--<p:selectOneMenu id="plan2" value="#{selectOneMenuView.console}"-->
+                <!--style="width:200px; margin:0px 10px 5px 0px;">-->
+                <!--<f:selectItem itemLabel="Select Device Plan" itemValue=""/>-->
+                <!--<f:selectItem itemLabel="GPS" itemValue="GPS"/>-->
+                <!--<f:selectItem itemLabel="OPS" itemValue="OPS"/>-->
+                <!--</p:selectOneMenu>-->
+                <!--<p:selectBooleanCheckbox value="accept" styleClass="Fleft"-->
+                <!--itemLabel="Complaint About Services"/>-->
+                <!--<p:selectBooleanCheckbox value="accept" styleClass="Fleft"-->
+                <!--itemLabel="Complaint About Devices"/>-->
+
+                <!--<p:inputTextarea rows="5" placeholder="Your Notification Info"-->
+                <!--style="width:95%;"/>-->
+                <!--<h:outputText value=""></h:outputText>-->
+
+                <!--<p:column headerText="Action">-->
+                <!--<p:commandButton value="Clear Form" styleClass="RedButton"/>-->
+                <!--<p:commandButton value="Send Form" styleClass="CyanButton"/>-->
+                <!--</p:column>-->
+
+                <!--</p:panelGrid>-->
+                <!--</p:tab>-->
+                <!--</p:tabView>-->
+                <!--</h:form>-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+                <!--&lt;!&ndash; Section 2 &ndash;&gt;-->
+                <!--<div class="Container100">-->
+                <!--<div class="ContainerIndent">-->
+                <!--<div class="Card ShadowEffect HeiAutoOnMobile">-->
+                <!--<h2 class="CardTopic">Your Cellular Data Usage Statistics</h2>-->
+                <!--<div class="SeparatorFull"></div>-->
+                <!--<div class="EmptyBox20"></div>-->
+
+                <!--&lt;!&ndash;<div class="Container60 Responsive50">&ndash;&gt;-->
+                <!--&lt;!&ndash;<p:chart type="line" model="#{chartView.lineModel1}" style="height:350px;" responsive="true"/>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--<div class="Container40 Responsive50">-->
+                <!--<p:selectOneMenu id="console3" value="#{selectOneMenuView.console}"-->
+                <!--style="min-width:100px; width:120px; margin:10px 10px 5px 0px;"-->
+                <!--styleClass="WidAutoOnMobile">-->
+                <!--<f:selectItem itemLabel="Select Period" itemValue=""/>-->
+                <!--<f:selectItem itemLabel="Daily" itemValue="Daily"/>-->
+                <!--<f:selectItem itemLabel="Weekly" itemValue="Weekly"/>-->
+                <!--<f:selectItem itemLabel="Monthly" itemValue="Monthly"/>-->
+                <!--<f:selectItem itemLabel="Annual" itemValue="Annual"/>-->
+                <!--</p:selectOneMenu>-->
+
+                <!--<p:selectOneMenu id="console4" value="#{selectOneMenuView.console}"-->
+                <!--style="min-width:100px; width:120px; margin:10px 10px 5px 0px;"-->
+                <!--styleClass="WidAutoOnMobile">-->
+                <!--<f:selectItem itemLabel="Select Data Type" itemValue=""/>-->
+                <!--<f:selectItem itemLabel="Files" itemValue="Files"/>-->
+                <!--<f:selectItem itemLabel="Music" itemValue="Music"/>-->
+                <!--<f:selectItem itemLabel="Tracking" itemValue="Tracking"/>-->
+                <!--<f:selectItem itemLabel="Others" itemValue="Others"/>-->
+                <!--</p:selectOneMenu>-->
+
+                <!--<div class="EmptyBox10"></div>-->
+                <!--<p:button value="Filter Statistics" styleClass="PinkButton White Fs14"-->
+                <!--icon="fa fa-line-chart"/>-->
+                <!--<p:button value="Get All Reports" styleClass="White Fs14"-->
+                <!--icon="fa fa-line-chart"/>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+                <!--&lt;!&ndash; Right Column &ndash;&gt;-->
+                <!--<div class="Container30 Responsive100">-->
+
+                <!--&lt;!&ndash; Section 1 &ndash;&gt;-->
+                <!--<div class="Container100">-->
+                <!--<div class="ContainerIndent">-->
+                <!--<div class="Card ShadowEffect HeiAutoOnMobile">-->
+                <!--<h2 class="CardTopic TexAlCenter">Applications</h2>-->
+                <!--<div class="EmptyBox20"></div>-->
+
+                <!--<div class="Container50 Responsive50">-->
+                <!--<div class="ContainerIndent">-->
+                <!--<div class="Card SoftGrayBack TexAlCenter">-->
+                <!--<i class="icon-phone_in_talk Fs50 BoldGray DispBlock"></i>-->
+                <!--<div class="EmptyBox5"></div>-->
+                <!--<span class="FontRobotoLight Fs18">VoIP Services</span>-->
+                <!--<div class="EmptyBox10"></div>-->
+                <!--<p:button value="Enable For Use" styleClass="GreenButton"/>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="Container50 Responsive50">-->
+                <!--<div class="ContainerIndent">-->
+                <!--<div class="Card SoftBlueBack TexAlCenter">-->
+                <!--<i class="icon-message Fs50 White DispBlock"></i>-->
+                <!--<div class="EmptyBox5"></div>-->
+                <!--<span class="FontRobotoLight Fs18 White">Smart Messaging</span>-->
+                <!--<div class="EmptyBox10"></div>-->
+                <!--<p:button value="Disable For Use" styleClass="RedButton"/>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="Container50 Responsive50">-->
+                <!--<div class="ContainerIndent">-->
+                <!--<div class="Card SoftGrayBack TexAlCenter">-->
+                <!--<i class="icon-cloud_done Fs50 DispBlock"></i>-->
+                <!--<div class="EmptyBox5"></div>-->
+                <!--<span class="FontRobotoLight Fs18">Cloud Storage</span>-->
+                <!--<div class="EmptyBox10"></div>-->
+                <!--<p:button value="Enable For Use" styleClass="GreenButton"/>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="Container50 Responsive50">-->
+                <!--<div class="ContainerIndent">-->
+                <!--<div class="Card SoftGrayBack TexAlCenter">-->
+                <!--<i class="icon-airplanemode_active Fs50 DispBlock"></i>-->
+                <!--<div class="EmptyBox5"></div>-->
+                <!--<span class="FontRobotoLight Fs18">Roaming Services</span>-->
+                <!--<div class="EmptyBox10"></div>-->
+                <!--<p:button value="Enable For Use" styleClass="GreenButton"/>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="Container50 Responsive50">-->
+                <!--<div class="ContainerIndent">-->
+                <!--<div class="Card SoftBlueBack TexAlCenter">-->
+                <!--<i class="icon-tap_and_play Fs50 DispBlock White"></i>-->
+                <!--<div class="EmptyBox5"></div>-->
+                <!--<span class="FontRobotoLight Fs18 White">3G Internet</span>-->
+                <!--<div class="EmptyBox10"></div>-->
+                <!--<p:button value="Enable For Use" styleClass="RedButton"/>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="Container50 Responsive50">-->
+                <!--<div class="ContainerIndent">-->
+                <!--<div class="Card SoftGrayBack TexAlCenter">-->
+                <!--<i class="icon-contacts Fs50 DispBlock"></i>-->
+                <!--<div class="EmptyBox5"></div>-->
+                <!--<span class="FontRobotoLight Fs18">Recover Contacts</span>-->
+                <!--<div class="EmptyBox10"></div>-->
+                <!--<p:button value="Enable For Use" styleClass="GreenButton"/>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="Container50 Responsive50">-->
+                <!--<div class="ContainerIndent">-->
+                <!--<div class="Card SoftGrayBack TexAlCenter">-->
+                <!--<i class="icon-verified_user Fs50 DispBlock"></i>-->
+                <!--<div class="EmptyBox5"></div>-->
+                <!--<span class="FontRobotoLight Fs18">VPN Service</span>-->
+                <!--<div class="EmptyBox10"></div>-->
+                <!--<p:button value="Enable For Use" styleClass="GreenButton"/>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="Container50 Responsive50">-->
+                <!--<div class="ContainerIndent">-->
+                <!--<div class="Card RedBack TexAlCenter">-->
+                <!--<i class="icon-settings_remote Fs50 DispBlock White"></i>-->
+                <!--<div class="EmptyBox5"></div>-->
+                <!--<span class="FontRobotoLight Fs18 White">Remote Services</span>-->
+                <!--<div class="EmptyBox10"></div>-->
+                <!--<p:button value="Service Problem"-->
+                <!--styleClass="RedButton Fs16 White"-->
+                <!--icon="fa fa-bug"/>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--&lt;!&ndash; Section 2 &ndash;&gt;-->
+                <!--<div class="Container100">-->
+                <!--<div class="ContainerIndent">-->
+                <!--<div class="Card ShadowEffect HeiAutoOnMobile">-->
+                <!--<h2 class="CardTopic">Mail List Subscribe</h2>-->
+                <!--<div class="SeparatorFull"></div>-->
+                <!--<div class="EmptyBox10"></div>-->
+                <!--<span class="FontRobotoLight BoldGray DispBlock">Please write your email address and press to SUBSCRIBE button..</span>-->
+                <!--<div class="EmptyBox10"></div>-->
+                <!--<p:inputText styleClass="Wid50" placeholder="Your Email Address"/>-->
+                <!--<div class="EmptyBox10 ShowOnMobile"></div>-->
+                <!--<p:commandButton value="SUBSCRIBE" styleClass="CyanButton"/>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--</div>-->
+
+                <!--&lt;!&ndash; Left Column &ndash;&gt;-->
+                <!--<div class="Container70 Responsive100">-->
+
+                <!--&lt;!&ndash; Section 1 &ndash;&gt;-->
+                <!--<div class="Container100">-->
+                <!--<div class="ContainerIndent">-->
+                <!--<div class="Card ShadowEffect HeiAutoOnMobile">-->
+                <!--<h2 class="CardTopic">Your Car List</h2>-->
+                <!--<div class="SeparatorFull"></div>-->
+                <!--<h:form>-->
+                <!--<p:dataTable var="car" value="#{dtBasicView.cars}" reflow="true"-->
+                <!--rows="5" paginator="true">-->
+                <!--<f:facet name="header">-->
+                <!--Car List-->
+                <!--</f:facet>-->
+                <!--<p:column headerText="Id">-->
+                <!--<h:outputText value="#{car.id}"/>-->
+                <!--</p:column>-->
+
+                <!--<p:column headerText="Year">-->
+                <!--<h:outputText value="#{car.year}"/>-->
+                <!--</p:column>-->
+
+                <!--<p:column headerText="Brand">-->
+                <!--<h:outputText value="#{car.brand}"/>-->
+                <!--</p:column>-->
+
+                <!--<p:column headerText="Color">-->
+                <!--<h:outputText value="#{car.color}"/>-->
+                <!--</p:column>-->
+                <!--</p:dataTable>-->
+                <!--</h:form>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--&lt;!&ndash; Section 2 &ndash;&gt;-->
+                <!--<div class="Container100">-->
+                <!--<div class="ContainerIndent">-->
+                <!--<div class="Card ShadowEffect HeiAutoOnMobile">-->
+                <!--<h2 class="CardTopic">Quick Device Request Panel</h2>-->
+                <!--<div class="SeparatorFull"></div>-->
+
+                <!--<p:panelGrid columns="3" layout="grid"-->
+                <!--style="border:0px !important; background:none;">-->
+                <!--<p:selectOneMenu id="device" value="#{selectOneMenuView.console}"-->
+                <!--style="width:160px; margin:0px 10px 5px 0px;">-->
+                <!--<f:selectItem itemLabel="Select Device Type" itemValue=""/>-->
+                <!--<f:selectItem itemLabel="GPS" itemValue="GPS"/>-->
+                <!--<f:selectItem itemLabel="OPS" itemValue="OPS"/>-->
+                <!--</p:selectOneMenu>-->
+                <!--<p:inputText styleClass="Wid70" placeholder="Name"/>-->
+                <!--<p:inputText styleClass="Wid70" placeholder="Email"/>-->
+
+                <!--<p:selectOneMenu id="category" value="#{selectOneMenuView.console}"-->
+                <!--style="width:160px; margin:0px 10px 5px 0px;">-->
+                <!--<f:selectItem itemLabel="Select Device Category" itemValue=""/>-->
+                <!--<f:selectItem itemLabel="GPS" itemValue="GPS"/>-->
+                <!--<f:selectItem itemLabel="OPS" itemValue="OPS"/>-->
+                <!--</p:selectOneMenu>-->
+                <!--<p:inputText styleClass="Wid70" placeholder="Phone"/>-->
+                <!--<p:inputText styleClass="Wid70" placeholder="Address"/>-->
+
+                <!--<p:selectOneMenu id="plan" value="#{selectOneMenuView.console}"-->
+                <!--style="width:160px; margin:0px 10px 5px 0px;">-->
+                <!--<f:selectItem itemLabel="Select Device Plan" itemValue=""/>-->
+                <!--<f:selectItem itemLabel="GPS" itemValue="GPS"/>-->
+                <!--<f:selectItem itemLabel="OPS" itemValue="OPS"/>-->
+                <!--</p:selectOneMenu>-->
+                <!--<p:selectBooleanCheckbox value="accept" styleClass="Fleft"-->
+                <!--itemLabel="Add Tracking Certification"/>-->
+                <!--<p:selectBooleanCheckbox value="accept" styleClass="Fleft"-->
+                <!--itemLabel="Add GPS Support"/>-->
+
+                <!--<p:selectOneMenu id="platform" value="#{selectOneMenuView.console}"-->
+                <!--style="width:160px; margin:0px 10px 5px 0px;">-->
+                <!--<f:selectItem itemLabel="Select Device Platform" itemValue=""/>-->
+                <!--<f:selectItem itemLabel="GPS" itemValue="GPS"/>-->
+                <!--<f:selectItem itemLabel="OPS" itemValue="OPS"/>-->
+                <!--</p:selectOneMenu>-->
+                <!--<h:outputText value=""></h:outputText>-->
+
+                <!--<p:column headerText="Action">-->
+                <!--<p:commandButton value="Clear Form" styleClass="RedButton"/>-->
+                <!--<p:commandButton value="Send Form" styleClass="CyanButton"/>-->
+                <!--</p:column>-->
+
+                <!--</p:panelGrid>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--</div>-->
+
+                <!--&lt;!&ndash; Right Column &ndash;&gt;-->
+                <!--<div class="Container30 Responsive100">-->
+
+                <!--&lt;!&ndash; Section 1 &ndash;&gt;-->
+                <!--<div class="Container100">-->
+                <!--<div class="ContainerIndent">-->
+                <!--<div class="Card ShadowEffect HeiAutoOnMobile">-->
+                <!--<h2 class="CardTopic">Other Location Based Services</h2>-->
+                <!--<div class="EmptyBox10"></div>-->
+
+                <!--<div class="Card ShadowEffect SoftBlueBack White">-->
+                <!--<h2 class="CardTopic White FontRobotoRegular BorderBottom Fs18">Container Tracking</h2>-->
+                <!--<div class="EmptyBox20"></div>-->
+                <!--<div class="Container100 Fs16 FontRobotoRegular">Container Tracking with GPS</div>-->
+                <!--<div class="EmptyBox20"></div>-->
+                <!--<div class="Container50 Responsive50 Fs14 FontRobotoLight">Magna urna suspendisse adullamcorper ultrices at pharetra eu-->
+                <!--augue a class dapibus ad condimentum congue nostra ad a nec. Feugiat donec at-->
+                <!--eu sapien senectus velit.-->
+                <!--</div>-->
+                <!--<div class="EmptyBox10 ShowOnMobile"></div>-->
+                <!--<div class="Container50 Responsive50">-->
+                <!--<p:button value="Get More Info"-->
+                <!--styleClass="PinkButton RaisedButton Fright"/>-->
+                <!--<div class="EmptyBox10"></div>-->
+                <!--<p:button value="Buy Now"-->
+                <!--styleClass="BlueTextButton RaisedButton Fright Fs16"-->
+                <!--icon="fa fa-shopping-cart"/>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="EmptyBox10"></div>-->
+
+                <!--<div class="Card ShadowEffect GreenBack White">-->
+                <!--<h2 class="CardTopic White FontRobotoRegular BorderBottom Fs18">Object Tracking</h2>-->
+                <!--<div class="EmptyBox20"></div>-->
+                <!--<div class="Container100 Fs16 FontRobotoRegular">Person And Object Tracking</div>-->
+                <!--<div class="EmptyBox20"></div>-->
+                <!--<div class="Container50 Responsive50 Fs14 FontRobotoLight">Magna urna suspendisse adullamcorper ultrices at pharetra eu-->
+                <!--augue a class dapibus ad condimentum congue nostra ad a nec. Feugiat donec at-->
+                <!--eu sapien senectus velit.-->
+                <!--</div>-->
+                <!--<div class="EmptyBox10 ShowOnMobile"></div>-->
+                <!--<div class="Container50 Responsive50">-->
+                <!--<p:button value="Get More Info"-->
+                <!--styleClass="PinkButton RaisedButton Fright"/>-->
+                <!--<div class="EmptyBox10"></div>-->
+                <!--<p:button value="Buy Now"-->
+                <!--styleClass="BlueTextButton RaisedButton Fright Fs16"-->
+                <!--icon="fa fa-shopping-cart"/>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="EmptyBox10"></div>-->
+
+                <!--<div class="Card ShadowEffect OrangeBack White">-->
+                <!--<h2 class="CardTopic White FontRobotoRegular BorderBottom Fs18">Mobile Tracking System</h2>-->
+                <!--<div class="EmptyBox20"></div>-->
+                <!--<div class="Container100 Fs16 FontRobotoRegular">SmartPhone Based Tracking</div>-->
+                <!--<div class="EmptyBox20"></div>-->
+                <!--<div class="Container50 Responsive50 Fs14 FontRobotoLight">Magna urna suspendisse adullamcorper ultrices at pharetra eu-->
+                <!--augue a class dapibus ad condimentum congue nostra ad a nec. Feugiat donec at-->
+                <!--eu sapien senectus velit.-->
+                <!--</div>-->
+                <!--<div class="EmptyBox10 ShowOnMobile"></div>-->
+                <!--<div class="Container50 Responsive50">-->
+                <!--<p:button value="Get More Info"-->
+                <!--styleClass="PinkButton RaisedButton Fright"/>-->
+                <!--<div class="EmptyBox10"></div>-->
+                <!--<p:button value="Buy Now"-->
+                <!--styleClass="BlueTextButton RaisedButton Fright Fs16"-->
+                <!--icon="fa fa-shopping-cart"/>-->
+                <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+
+        <!--</div>-->
+        <!--</div>-->
+
+
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,100 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="subheader">
+        Mantenimiento de Conceptos de Pagos
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="Container100">
+            <div class="ContainerIndent">
+                <div class="Card ShadowEffect ui-fluid">
+                    <div class="Container50 Responsive50">
+                        <div class="ContainerIndent">
+                            <h2 class="BigTopic">Formulario de Conceptos de Pago</h2>
+                            <h:form id="frmConceptos">
+                                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+                                <p:panelGrid columns="3" layout="grid" style="border:0px !important; background:none;"
+                                             styleClass="ui-panelgrid-blank">
+                                    <p:outputLabel value="Descripcion corta: " for="descCorta"></p:outputLabel>
+                                    <p:inputText placeholder="Descripcion Corta" id="descCorta" required="true"
+                                                 value="#{conceptosController.conceptosDePago.descripcionCorta}"/>
+                                    <br/>
+                                    <p:outputLabel value="Descricion Completa: " for="desLarga"></p:outputLabel>
+                                    <p:inputText placeholder="Descripcion Larga" id="desLarga" required="true"
+                                                 value="#{conceptosController.conceptosDePago.descripcionLarga}"/>
+                                    <br/>
+                                    <p:outputLabel value="Siglas: " for="siglas"></p:outputLabel>
+                                    <p:inputText placeholder="Siglas" id="siglas" required="true"
+                                                 value="#{conceptosController.conceptosDePago.siglas}"/>
+                                    <br/>
+                                    <p:outputLabel value="Estado: "></p:outputLabel>
+                                    <p:selectOneMenu id="console">
+                                        <f:selectItem itemLabel="Seleccione un Estado" itemValue="" />
+                                        <f:selectItem itemLabel="Activo" itemValue="1" />
+                                        <f:selectItem itemLabel="Inactivo" itemValue="0" />
+                                    </p:selectOneMenu>
+                                    <br/>
+
+                                    <br/>
+                                    <p:commandButton action="#{conceptosController.agregaConcepeto()}" actionListener="#{mensajes.info}" update="tblConceptos" value="Guardar Concepto"/>
+                                    <p:commandButton update="tblConceptos" value="Eliminar Concepto"/>
+
+                                </p:panelGrid>
+
+                            </h:form>
+                            <hr/>
+
+                            <div class="Container100">
+                                <div class="ContainerIndent">
+                                    <div class="Card ShadowEffect  ">
+                                        <div class="Container100">
+                                            <div class="ContainerIndent">
+                                                <h:form id="tblConceptos">
+                                                    <p:dataTable id="singleDT" var="concepto"
+                                                                 value="#{conceptosController.listarConceptos()}"
+                                                                 rowKey="#{conceptosController.conceptosDePago.id}"
+                                                                 rows="10" paginator="true"
+                                                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                                 rowsPerPageTemplate="5,10,15"
+                                                                 emptyMessage="No cars found with given criteria"
+                                                                 reflow="true">
+                                                        <f:facet name="header">
+                                                            <h3>Lista de Conceptos</h3>
+                                                        </f:facet>
+
+                                                        <p:column headerText="ID Concepto" sortBy="#{concepto.id}">
+                                                            <h:outputText value="#{concepto.id}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Codigo Concepto" sortBy="#{concepto.codigoPago}">
+                                                            <h:outputText value="#{concepto.codigoPago}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Descripcion Corta" sortBy="#{concepto.descripcionCorta}">
+                                                            <h:outputText value="#{concepto.descripcionCorta}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Descripcion Larga"
+                                                                  sortBy="#{concepto.descripcionLarga}">
+                                                            <h:outputText value="#{concepto.descripcionLarga}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Siglas" sortBy="#{concepto.siglas}">
+                                                            <h:outputText value="#{concepto.siglas}"/>
+                                                        </p:column>
+                                                    </p:dataTable>
+                                                </h:form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

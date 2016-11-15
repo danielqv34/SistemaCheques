@@ -1,0 +1,122 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="subheader">
+      <h2>Mantenimiento de Conceptos de Pagos</h2>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="Container100">
+            <div class="ContainerIndent">
+                <div class="Card ShadowEffect ui-fluid">
+                    <div class="Container50 Responsive50">
+                        <div class="ContainerIndent">
+                            <h2 class="BigTopic">Formulario de Conceptos de Pago</h2>.
+                            <h:form id="frmConceptos">
+                                <p:growl id="mensajeGeneral" showDetail="true"/>
+                                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+                                <p:panelGrid id="panel"  columns="3" layout="grid" style="border:0px !important; background:none;"
+                                             styleClass="ui-panelgrid-blank">
+                                    <p:outputLabel value="Descripcion corta: " for="descCorta"></p:outputLabel>
+                                    <p:inputText placeholder="Descripcion Corta" id="descCorta" required="true"
+                                                 value="#{conceptosController.conceptosDePago.descripcionCorta}"/>
+                                    <br/>
+                                    <p:outputLabel value="Descricion Completa: " for="desLarga"></p:outputLabel>
+                                    <p:inputText placeholder="Descripcion Larga" id="desLarga" required="true"
+                                                 value="#{conceptosController.conceptosDePago.descripcionLarga}"/>
+                                    <br/>
+                                    <p:outputLabel value="Siglas: " for="siglas"></p:outputLabel>
+                                    <p:inputText placeholder="Siglas" id="siglas" required="true"
+                                                 value="#{conceptosController.conceptosDePago.siglas}"/>
+                                    <br/>
+                                    <p:outputLabel value="Estado: "></p:outputLabel>
+                                    <p:selectOneMenu id="console">
+                                        <f:selectItem itemLabel="Seleccione un Estado" itemValue="#{conceptosController.conceptosDePago.estado}"/>
+                                        <f:selectItem itemLabel="Activo" itemValue="1"/>
+                                        <f:selectItem itemLabel="Inactivo" itemValue="0"/>
+                                    </p:selectOneMenu>
+                                    <br/>
+
+                                    <br/>
+                                    <p:commandButton action="#{conceptosController.agregaConcepeto()}" ajax="true" type="Reset"
+                                                     value="Guardar Concepto"/>
+
+
+                                </p:panelGrid>
+
+                            </h:form>
+                            <hr/>
+                            <div class="Container100">
+                                <div class="ContainerIndent">
+                                    <div class="Card ShadowEffect">
+                                        <div class="Container100">
+                                            <div class="ContainerIndent">
+                                                <h2 class="TexAlCenter BigTopic">Lista de Conceptos</h2>
+                                                <h:form id="frmListaConcetpos">
+                                                    <p:dataTable id="tblConceptos" var="conceptos"
+                                                                 value="#{conceptosController.listarConceptos()}"
+                                                                 selectionMode="single"
+                                                                 rowKey="#{conceptosController.conceptosDePago.id}"
+                                                                 rows="10" paginator="true"
+                                                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                                 rowsPerPageTemplate="5,10,15"
+                                                                 emptyMessage="No existen conceptos de pago"
+                                                                 reflow="true">
+                                                        <f:facet name="header">
+                                                           Conceptos Activos
+                                                        </f:facet>
+                                                        <p:column headerText="ID Concepto" sortBy="#{conceptos.id}">
+                                                            <h:outputText value="#{conceptos.id}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Codigo Conceptos" sortBy="#{conceptos.codigoPago}">
+                                                            <h:outputText value="#{conceptos.codigoPago}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Descripcion Corta" sortBy="#{descripcionCorta.descripcionCorta}">
+                                                            <h:outputText value="#{conceptos.descripcionCorta}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Descripcion Larga" sortBy="#{conceptos.descripcionLarga}">
+                                                            <h:outputText value="#{conceptos.descripcionLarga}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Siglas" sortBy="#{conceptos.siglas}">
+                                                            <h:outputText value="#{conceptos.siglas}"/>
+                                                        </p:column>
+                                                        <p:column style="text-align:center;">
+                                                            <p:commandButton value="Eliminar Concepto" actionListener="#{conceptosController.borraConcepto(conceptos.id)}"/>
+                                                        </p:column>
+                                                    </p:dataTable>
+                                                    <p:dialog header="Conceptos" widgetVar="Conceptos" modal="true" showEffect="fade" hideEffect="fade" resizable="false" responsive="true">
+                                                        <p:outputPanel id="carDetail" style="text-align:center;">
+                                                            <p:panelGrid  columns="2" rendered="#{not empty conceptosController.listarConceptos()}" layout="grid" styleClass="ui-panelgrid-blank">
+
+                                                                <h:outputText value="Id:" style="font-weight: bold"/>
+                                                                <h:outputText value="#{conceptosController.conceptosDePago.id}" />
+
+                                                                <h:outputText value="Year" style="font-weight: bold"/>
+                                                                <h:outputText value="#{conceptosController.conceptosDePago.descripcionCorta}" />
+
+                                                                <h:outputText value="Color:" style="font-weight: bold"/>
+                                                                <h:outputText value="#{conceptosController.conceptosDePago.descripcionLarga}"/>
+
+                                                                <h:outputText value="Color:" style="font-weight: bold"/>
+                                                                <h:outputText value="#{conceptosController.conceptosDePago.siglas}"/>
+                                                            </p:panelGrid>
+                                                        </p:outputPanel>
+                                                    </p:dialog>
+                                                </h:form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

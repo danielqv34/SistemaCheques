@@ -1,0 +1,110 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="subheader">
+        <h2>Creacion de Solicitudes de Cheques</h2>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="Container100">
+            <div class="ContainerIndent">
+                <div class="Card ShadowEffect ui-fluid">
+                    <div class="Container50 Responsive50">
+                        <div class="ContainerIndent">
+                            <h2 class="BigTopic">Formulario de Solicitudes de Cheques</h2>
+                            <h:form id="frmSolicitudes">
+                                <!--<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>-->
+                                <p:panelGrid columns="3" layout="grid" id="panel" style="border:0px !important; background:none;"
+                                             styleClass="ui-panelgrid-blank">
+                                    <p:outputLabel value="Codigo del Banco: " for="codB"></p:outputLabel>
+                                    <p:inputText placeholder="Codigo del Banco" id="codB" required="true" size="40"
+                                                 value="#{solicitudesController.solicitudDeCheque.codigoBanco}"/>
+                                    <br/>
+                                    <p:outputLabel value="Monto: " for="mcheque"></p:outputLabel>
+                                    <p:inputText placeholder="Monto del Cheque" id="mcheque" required="true"
+                                                 value="#{solicitudesController.solicitudDeCheque.monto}"/>
+                                    <br/>
+                                    <p:outputLabel value="Fecha Registro: " for="popup"></p:outputLabel>
+                                    <p:calendar id="popup" value="#{solicitudesController.solicitudDeCheque.fechaDeRegistro}" />
+                                    <br/>
+                                    <p:outputLabel value="Cuenta contable del proveedor: " for="cprov"></p:outputLabel>
+                                    <p:inputText placeholder="Cuenta contable del preedor" id="cprov" required="true"
+                                                 value="#{solicitudesController.solicitudDeCheque.cuentaContableProveedor}"/>
+                                    <br/>
+                                    <p:outputLabel value="Cuenta Banco: " for="siglas"></p:outputLabel>
+                                    <p:inputText placeholder="Cuenta Contable Banco" id="siglas" required="true"
+                                                 value="#{solicitudesController.solicitudDeCheque.cuentaContableBanco}"/>
+                                    <br/>
+                                    <p:commandButton action="#{solicitudesController.creaSolicitud()}" update="frmSolicitudes"
+                                                     value="Crea Solicitud"/>
+                                    <!--<p:commandButton value="Eliminar Concepto"/>-->
+
+                                </p:panelGrid>
+
+                            </h:form>
+                            <hr/>
+
+                            <div class="Container100">
+                                <div class="ContainerIndent">
+                                    <div class="Card ShadowEffect  ">
+                                        <div class="Container100">
+                                            <div class="ContainerIndent">
+                                                <h2 class="TexAlCenter BigTopic">Lista de Solicitudes</h2>
+
+                                                <h:form id="frmListaSolicitudes">
+                                                    <p:dataTable id="tblSolc" var="solicitudes"
+                                                                 value="#{solicitudesController.chequeList()}"
+                                                                 selectionMode="single"
+                                                                 rowKey="#{solicitudesController.solicitudDeCheque.id}"
+                                                                 rows="10" paginator="true"
+                                                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                                 rowsPerPageTemplate="5,10,15"
+                                                                 emptyMessage="No existen solicitudes"
+                                                                 reflow="true">
+                                                        <f:facet name="header">
+                                                          Lista de Solicitudes
+                                                        </f:facet>
+
+
+                                                        <p:column headerText="ID Solicitud" sortBy="#{solicitudes.id}">
+                                                            <h:outputText value="#{solicitudes.id}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Numero de Solicitud" sortBy="#{solicitudes.númeroDeSolicitud}">
+                                                            <h:outputText value="#{solicitudes.númeroDeSolicitud}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Codigo Banco" sortBy="#{solicitudes.codigoBanco}">
+                                                            <h:outputText value="#{solicitudes.codigoBanco}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Monto" sortBy="#{solicitudes.monto}">
+                                                            <h:outputText value="#{solicitudes.monto}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Fecha de Registro" sortBy="#{solicitudes.fechaDeRegistro}">
+                                                            <h:outputText value="#{solicitudes.fechaDeRegistro}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Cuenta Contable Proveedor" sortBy="#{solicitudes.cuentaContableProveedor}">
+                                                            <h:outputText value="#{solicitudes.cuentaContableProveedor}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Cuenta Contable Banco" sortBy="#{solicitudes.cuentaContableBanco}">
+                                                            <h:outputText value="#{solicitudes.cuentaContableBanco}"/>
+                                                        </p:column>
+                                                        <p:column style="text-align:center;">
+                                                            <p:commandButton value="Eliminar Solicitud" actionListener="#{solicitudesController.borraSolicitud(solicitudes.id)}"/>
+                                                        </p:column>
+                                                    </p:dataTable>
+                                                </h:form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

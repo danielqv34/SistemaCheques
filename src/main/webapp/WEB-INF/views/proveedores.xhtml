@@ -1,0 +1,140 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="subheader">
+       <h2>Mantenimiento Proveedores</h2>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="Container100">
+            <div class="ContainerIndent">
+                <div class="Card ShadowEffect ui-fluid">
+                    <div class="Container50 Responsive50">
+                        <div class="ContainerIndent">
+                            <h2 class="BigTopic">Formulario de Proveedores</h2>
+                            <h:form id="frmProveedores">
+                                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+                                <p:panelGrid columns="3" id="panel" layout="grid" style="border:0px !important; background:none;"
+                                             styleClass="ui-panelgrid-blank">
+                                    <p:outputLabel value="Nombre: " for="nombre"></p:outputLabel>
+                                    <p:inputText placeholder="Nombre Proveedor" id="nombre" required="true" size="80"
+                                                 value="#{proveedoresController.proveedores.nombre}"/>
+                                    <br/>
+                                    <p:outputLabel value="Descricion: " for="desc"></p:outputLabel>
+                                    <p:inputText placeholder="Descripcion Proveedor" id="desc" required="true" size="60"
+                                                 value="#{proveedoresController.proveedores.descripcion}"/>
+                                    <br/>
+                                    <p:outputLabel value="Tipo Persona: " for="persT"></p:outputLabel>
+                                    <p:inputText placeholder="Tipo Persona" id="persT" required="true" size="60"
+                                                 value="#{proveedoresController.proveedores.tipoPersona}"/>
+                                    <br/>
+                                    <p:outputLabel value="RNC o Cedula: " for="rnc"></p:outputLabel>
+                                    <p:inputText placeholder="Cedula o RNC del Proveedor" id="rnc" required="true" size="60"
+                                                 value="#{proveedoresController.proveedores.rncCedula}"/>
+                                    <br/>
+                                    <p:outputLabel value="Cuenta Contanle: " for="cuentaC"></p:outputLabel>
+                                    <p:inputText placeholder="Cuenta Contable" id="cuentaC" required="true" size="60"
+                                                 value="#{proveedoresController.proveedores.cuentaContable}"/>
+                                    <br/>
+                                    <p:outputLabel value="Balance Actual: " for="balance"></p:outputLabel>
+                                    <p:inputText placeholder="Balance del Proveedor" id="balance" required="true" size="60"
+                                                 value="#{proveedoresController.proveedores.balance}"/>
+                                    <br/>
+                                    <p:outputLabel value="Direccion: " for="dir"></p:outputLabel>
+                                    <p:inputText placeholder="Direccion del Proveedor" id="dir" required="true" size="60"
+                                                 value="#{proveedoresController.proveedores.direccion}"/>
+                                    <br/>
+                                    <p:outputLabel value="Telefono: " for="tel"></p:outputLabel>
+                                    <p:inputText placeholder="Telefono del Proveedor" id="tel" required="true" size="60"
+                                                 value="#{proveedoresController.proveedores.telefono}"/>
+                                    <br/>
+                                    <p:outputLabel value="Correo Electronico: " for="email"></p:outputLabel>
+                                    <p:inputText placeholder="Correo Electronico Proveedor" id="email" required="true" size="60"
+                                                 value="#{proveedoresController.proveedores.correo}"/>
+                                    <br/>
+                                    <p:outputLabel value="Estado: "></p:outputLabel>
+                                    <p:selectOneMenu id="console">
+                                        <f:selectItem itemLabel="Seleccione un Estado" itemValue="#{proveedoresController.proveedores.estado}"/>
+                                        <f:selectItem itemLabel="Activo" itemValue="1"/>
+                                        <f:selectItem itemLabel="Inactivo" itemValue="0"/>
+                                    </p:selectOneMenu>
+                                    <br/>
+                                    <p:commandButton action="#{proveedoresController.agregaProveedor()}" ajax="true"
+                                                     value="Guardar Proveedor"/>
+
+                                </p:panelGrid>
+
+                            </h:form>
+                            <hr/>
+
+                            <div class="Container100">
+                                <div class="ContainerIndent">
+                                    <div class="Card ShadowEffect  ">
+                                        <div class="Container100">
+                                            <div class="ContainerIndent">
+                                                <h:form id="frmListaProveedores">
+                                                    <p:dataTable id="tblProveedores" var="proveedores"
+                                                                 value="#{proveedoresController.proveedoresList()}"
+                                                                 rowKey="#{proveedoresController.proveedores.id}"
+                                                                 rows="10" paginator="true"
+                                                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                                                 rowsPerPageTemplate="5,10,15"
+                                                                 emptyMessage="No cars found with given criteria"
+                                                                 reflow="true">
+                                                        <f:facet name="header">
+                                                            <h3>Lista de Proveedores</h3>
+                                                        </f:facet>
+
+                                                        <p:column headerText="ID Proveedor" sortBy="#{proveedores.id}">
+                                                            <h:outputText value="#{proveedores.id}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Nombre" sortBy="#{proveedores.nombre}">
+                                                            <h:outputText value="#{proveedores.nombre}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Descripcion Corta" sortBy="#{proveedores.descripcion}">
+                                                            <h:outputText value="#{proveedores.descripcion}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Descripcion Larga"
+                                                                  sortBy="#{proveedores.tipoPersona}">
+                                                            <h:outputText value="#{proveedores.tipoPersona}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Siglas" sortBy="#{proveedores.rncCedula}">
+                                                            <h:outputText value="#{proveedores.rncCedula}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Siglas" sortBy="#{proveedores.cuentaContable}">
+                                                            <h:outputText value="#{proveedores.cuentaContable}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Siglas" sortBy="#{proveedores.balance}">
+                                                            <h:outputText value="#{proveedores.balance}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Siglas" sortBy="#{proveedores.direccion}">
+                                                            <h:outputText value="#{proveedores.direccion}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Siglas" sortBy="#{proveedores.telefono}">
+                                                            <h:outputText value="#{proveedores.telefono}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Siglas" sortBy="#{proveedores.correo}">
+                                                            <h:outputText value="#{proveedores.correo}"/>
+                                                        </p:column>
+                                                        <p:column style="text-align:center;">
+                                                            <p:commandButton value="Eliminar Proveedor" actionListener="#{proveedoresController.borraProveedor(proveedores.id)}"/>
+                                                        </p:column>
+                                                    </p:dataTable>
+                                                </h:form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

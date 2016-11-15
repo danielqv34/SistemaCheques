@@ -1,0 +1,77 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:pm="http://primefaces.org/modena">
+
+    <div class="Animated05" id="layout-menu-cover">
+        <h:form id="menuform">
+            <pm:menu>
+                <p:menuitem id="rm_dashboard" value="Dashboard" icon="icon-dvr" outcome="/dashboard"/>
+                <p:menuitem id="rm_promotion" value="Servicios" icon="icon-dvr" outcome="/promotion-page"/>
+                <p:submenu id="colors" label="Color Variations" icon="icon-color_lens">
+                    <p:menuitem id="gray_geometric" value="Gray" icon="icon-colorize" url="#" onclick="$('body').attr('class', '').addClass('GrayModena Geometry');"/>
+                    <p:menuitem id="blue_geometric" value="Blue" icon="icon-colorize" url="#" onclick="$('body').attr('class', '').addClass('BlueModena Geometry');"/>
+                    <p:menuitem id="indigo_geometric" value="Indigo" icon="icon-colorize" url="#" onclick="$('body').attr('class', '').addClass('IndigoModena Geometry');"/>
+                    <p:menuitem id="cyan_geometric" value="Cyan" icon="icon-colorize" url="#" onclick="$('body').attr('class', '').addClass('CyanModena Geometry');"/>
+                    <p:menuitem id="red_geometric" value="Red" icon="icon-colorize" url="#" onclick="$('body').attr('class', '').addClass('RedModena Geometry');"/>
+                </p:submenu>
+                <p:submenu id="rm_theme" label="Modena Theme" icon="icon-format_color_fill">
+                    <p:menuitem id="rm_sample" value="Sample Page" icon="fa fa-columns" outcome="/sample" />
+                    <p:menuitem id="rm_forms" value="Form Elements" icon="icon-paper" outcome="/forms" />
+                    <p:menuitem id="rm_data" value="Data Components" icon="icon-subtitles" outcome="/data" />
+                    <p:menuitem id="rm_datatable" value="DataTable" icon="icon-web" outcome="/datatable" />
+                    <p:menuitem id="rm_panels" value="Panels" icon="icon-chrome_reader_mode Fs16" outcome="/panel" />
+                    <p:menuitem id="rm_overlays" value="Overlays" icon="icon-photo_size_select_small" outcome="/overlay" />
+                    <p:menuitem id="rm_menus" value="Menus" icon="icon-receipt Fs16" outcome="/menu" />
+                    <p:menuitem id="rm_messages" value="Messages" icon="icon-sms_failed Fs16" outcome="/messages" />
+                    <p:menuitem id="rm_charts" value="Charts" icon="icon-bar-graph-2 Fs16" outcome="/charts" />
+                    <p:menuitem id="rm_fileupload" value="FileUpload" icon="icon-cast" outcome="/file" />
+                    <p:menuitem id="rm_misc" value="Misc" icon="icon-developer_board" outcome="/misc" />
+                </p:submenu>
+                <p:submenu id="rm_default" label="Mantenimientos" icon="icon-library_books">
+                    <p:menuitem id="rm_empty" value="Conceptos de Pago" icon="icon-settings_overscan" outcome="/conceptos" />
+                    <p:menuitem id="rm_login" value="Proveedores" icon="icon-assignment_ind" outcome="/proveedores" />
+                    <p:menuitem id="rm_error" value="Socilitudes de Cheque" icon="icon-warning" outcome="/solicitudes" />
+                    <p:menuitem id="rm_404" value="Bancos" icon="icon-warning" outcome="/Bancos" />
+                    <p:menuitem id="rm_access" value="Cuentas Contables" icon="icon-visibility_off" outcome="/cuentas"/>
+                </p:submenu>
+                <p:submenu id="rm_hierarchy" label="Menu Hierarchy" icon="icon-device_hub">
+                    <p:submenu id="rm_sm1" label="Submenu 1" icon="icon-folder_open">
+                        <p:submenu id="rm_sm11" label="Submenu 1.1" icon="icon-folder_open">
+                            <p:submenu id="rm_sm111" label="Submenu 1.1.1" icon="icon-folder_open">
+                                <p:menuitem id="rm_lnk1111" value="Link 1" icon="icon-link" url="#" />
+                                <p:menuitem id="rm_lnk1112" value="Link 2" icon="icon-link" url="#" />
+                                <p:menuitem id="rm_lnk1113" value="Link 3" icon="icon-link" url="#" />
+                            </p:submenu>
+                        </p:submenu>
+                    </p:submenu>
+                    <p:submenu id="rm_sm2" label="Submenu 2" icon="icon-folder_open">
+                        <p:submenu id="rm_22" label="Submenu 2.2" icon="icon-folder_open">
+                            <p:submenu id="rm_221" label="Submenu 2.2.1" icon="icon-folder_open">
+                                <p:menuitem id="rm_lnk2211" value="Link 1" icon="icon-link" url="#" />
+                                <p:menuitem id="rm_lnk2212" value="Link 2" icon="icon-link" url="#" />
+                                <p:menuitem id="rm_lnk2213" value="Link 3" icon="icon-link" url="#" />
+                            </p:submenu>
+                        </p:submenu>
+                    </p:submenu>
+                </p:submenu>
+                <p:menuitem id="rm_icons" value="Font Icons" icon="icon-stars" outcome="/font-icons" />
+                <p:submenu id="sm_orientation" label="Orientation" icon="icon-align-justify">
+                    <p:menuitem id="sm_rtl" value="RTL" icon="icon-align-right" onclick="$('body').addClass('ui-modena-rtl');return false;" />
+                    <p:menuitem id="sm_ltr" value="LTR" icon="icon-align-left" onclick="$('body').removeClass('ui-modena-rtl');return false;" />
+                </p:submenu>
+
+                <p:submenu id="rm_docs" label="Documentacion" icon="icon-card_membership">
+
+
+                </p:submenu>
+                <p:separator />
+            </pm:menu>
+        </h:form>
+
+    </div>
+
+</ui:composition>
