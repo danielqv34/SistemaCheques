@@ -23,15 +23,15 @@
                                              styleClass="ui-panelgrid-blank">
                                     <p:outputLabel value="Descripcion corta: " for="descCorta"></p:outputLabel>
                                     <p:inputText placeholder="Descripcion Corta" id="descCorta" required="true"
-                                                 value="#{conceptosController.conceptosDePago.descripcionCorta}"/>
+                                                 value="#{conceptosController.conceptosDePago.descripcionCorta}" maxlength="40"/>
                                     <br/>
                                     <p:outputLabel value="Descricion Completa: " for="desLarga"></p:outputLabel>
                                     <p:inputText placeholder="Descripcion Larga" id="desLarga" required="true"
-                                                 value="#{conceptosController.conceptosDePago.descripcionLarga}"/>
+                                                 value="#{conceptosController.conceptosDePago.descripcionLarga}" maxlength="80"/>
                                     <br/>
                                     <p:outputLabel value="Siglas: " for="siglas"></p:outputLabel>
                                     <p:inputText placeholder="Siglas" id="siglas" required="true"
-                                                 value="#{conceptosController.conceptosDePago.siglas}"/>
+                                                 value="#{conceptosController.conceptosDePago.siglas}" maxlength="11"/>
                                     <br/>
                                     <p:outputLabel value="Estado: "></p:outputLabel>
                                     <p:selectOneMenu id="console">

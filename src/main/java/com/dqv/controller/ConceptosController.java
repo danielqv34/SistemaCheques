@@ -2,10 +2,16 @@ package com.dqv.controller;
 
 
 import com.dqv.Entities.ConceptosDePago;
+import com.dqv.dao.ObtenerSession;
 import com.dqv.services.ConceptosPago.ConceptosService;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
 import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -23,7 +29,7 @@ import java.util.List;
 @Controller
 @ManagedBean(name = "conceptosController")
 @ViewScoped
-public class ConceptosController implements Serializable {
+public class ConceptosController extends ObtenerSession implements Serializable {
 
     private ConceptosDePago conceptosDePago;
 
@@ -31,14 +37,26 @@ public class ConceptosController implements Serializable {
     @Autowired
     private ConceptosService conceptosService;
 
-    public void agregaConcepeto() throws SQLException {
-        conceptosService.agregaConcepto(conceptosDePago);
+    public boolean agregaConcepeto() throws SQLException {
 
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Concepto Agregado"));
+        if (existeConcepto() == true) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "Ya existe este de Concepto de Pago"));
+            return false;
 
-        RequestContext.getCurrentInstance().update("frmListaConcetpos:tblConceptos");
+        } else {
 
-        RequestContext.getCurrentInstance().reset("frmConceptos:panel");
+            conceptosService.agregaConcepto(conceptosDePago);
+
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Concepto Agregado"));
+
+            RequestContext.getCurrentInstance().update("frmListaConcetpos:tblConceptos");
+
+            RequestContext.getCurrentInstance().reset("frmConceptos:panel");
+
+            return true;
+        }
+
+
     }
 
     public List<ConceptosDePago> listarConceptos() throws SQLException {
@@ -52,6 +70,19 @@ public class ConceptosController implements Serializable {
         RequestContext.getCurrentInstance().update("frmListaConcetpos:tblConceptos");
     }
 
+    public boolean existeConcepto() {
+        Criteria criteria = getSession().createCriteria(ConceptosDePago.class);
+        criteria.add(Restrictions.eq("siglas", conceptosDePago.getSiglas()));
+        criteria.setProjection(Projections.rowCount());
+        long count = (Long) criteria.uniqueResult();
+        if (count != 0) {
+            System.out.println("Exite sigla pago");
+            return true;
+        } else {
+            System.out.println("No existe:: Continuo la inserccion");
+            return false;
+        }
+    }
 
     public ConceptosController() {
         conceptosDePago = new ConceptosDePago();

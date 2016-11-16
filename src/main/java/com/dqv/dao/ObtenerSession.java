@@ -3,12 +3,13 @@ package com.dqv.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 
 /**
  * Created by ezequ on 10/26/2016.
  */
-
+@Transactional
 public  abstract class ObtenerSession {
 
     @Autowired
