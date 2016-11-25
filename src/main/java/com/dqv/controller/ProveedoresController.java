@@ -33,12 +33,12 @@ public class ProveedoresController extends ObtenerSession {
     private ProveedoresService proveedoresService;
 
     @Autowired
-    private ProveedoresValidations validations;
+    private ProveedoresValidations proveedoresValidations;
 
 
     public boolean agregaProveedor() throws SQLException {
 
-        if (validations.validaCuentaContable(proveedores.getCuentaContable()) == true) {
+        if (proveedoresValidations.validaCuentaContable(proveedores.getCuentaContable()) == true) {
 
             proveedoresService.agregaProveedor(proveedores);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Proveedor Agregado"));
@@ -101,11 +101,11 @@ public class ProveedoresController extends ObtenerSession {
         this.cuentasContables = cuentasContables;
     }
 
-    public ProveedoresValidations getValidations() {
-        return validations;
+    public ProveedoresValidations getProveedoresValidations() {
+        return proveedoresValidations;
     }
 
-    public void setValidations(ProveedoresValidations validations) {
-        this.validations = validations;
+    public void setProveedoresValidations(ProveedoresValidations proveedoresValidations) {
+        this.proveedoresValidations = proveedoresValidations;
     }
 }
