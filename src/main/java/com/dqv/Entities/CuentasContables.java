@@ -3,25 +3,27 @@ package com.dqv.Entities;
 import javax.persistence.*;
 
 /**
- * Created by ezequ on 11/12/2016.
+ * Created by ezequ on 11/24/2016.
  */
 @Entity
-@Table(name = "CUENTAS_CONTABLES", schema = "C##DQUIROZ", catalog = "")
+@Table(name = "CUENTAS_CONTABLES", schema = "C##DQUIROZ")
 public class CuentasContables {
-    private int id;
+    private Integer id;
     private String codigoBanco;
     private String rncCedulaProveedor;
-    private int cuentaContable;
+    private Integer cuentaContable;
+    private double montoCuenta;
     private String descripcion;
-    private int estado;
+    private String estado;
 
     @Id
     @Column(name = "ID", nullable = false, precision = 0)
-    public int getId() {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -46,13 +48,23 @@ public class CuentasContables {
     }
 
     @Basic
-    @Column(name = "CUENTA_CONTABLE", nullable = false, precision = 0)
-    public int getCuentaContable() {
+    @Column(name = "CUENTA_CONTABLE", nullable = false, precision = 0, insertable = false)
+    public Integer getCuentaContable() {
         return cuentaContable;
     }
 
-    public void setCuentaContable(int cuentaContable) {
+    public void setCuentaContable(Integer cuentaContable) {
         this.cuentaContable = cuentaContable;
+    }
+
+    @Basic
+    @Column(name = "MONTO_CUENTA", nullable = false, precision = 2)
+    public Double getMontoCuenta() {
+        return montoCuenta;
+    }
+
+    public void setMontoCuenta(Double montoCuenta) {
+        this.montoCuenta = montoCuenta;
     }
 
     @Basic
@@ -66,41 +78,13 @@ public class CuentasContables {
     }
 
     @Basic
-    @Column(name = "ESTADO", nullable = false, precision = 0)
-    public int getEstado() {
+    @Column(name = "ESTADO", nullable = true, length = 2 ,insertable = false)
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-
-        CuentasContables that = (CuentasContables) object;
-
-        if (id != that.id) return false;
-        if (cuentaContable != that.cuentaContable) return false;
-        if (estado != that.estado) return false;
-        if (codigoBanco != null ? !codigoBanco.equals(that.codigoBanco) : that.codigoBanco != null) return false;
-        if (rncCedulaProveedor != null ? !rncCedulaProveedor.equals(that.rncCedulaProveedor) : that.rncCedulaProveedor != null)
-            return false;
-        if (descripcion != null ? !descripcion.equals(that.descripcion) : that.descripcion != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (codigoBanco != null ? codigoBanco.hashCode() : 0);
-        result = 31 * result + (rncCedulaProveedor != null ? rncCedulaProveedor.hashCode() : 0);
-        result = 31 * result + cuentaContable;
-        result = 31 * result + (descripcion != null ? descripcion.hashCode() : 0);
-        result = 31 * result + estado;
-        return result;
-    }
 }

@@ -25,7 +25,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public UrlBasedViewResolver urlBasedViewResolver() {
         UrlBasedViewResolver resolver = new UrlBasedViewResolver();
         resolver.setViewClass(JsfView.class);
-        resolver.setPrefix("/WEB-INF/views");
+        resolver.setPrefix("/WEB-INF/views/");
         resolver.setSuffix(".xhtml");
         return resolver;
     }
@@ -40,7 +40,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("forward:/index.xhtml");
+        registry.addViewController("/").setViewName("forward:/login.xhtml");
     }
 
 }

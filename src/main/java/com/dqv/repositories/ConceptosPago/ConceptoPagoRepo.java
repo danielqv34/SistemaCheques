@@ -4,7 +4,6 @@ import com.dqv.Entities.ConceptosDePago;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Created by ezequ on 11/10/2016.
@@ -15,11 +14,10 @@ public interface ConceptoPagoRepo {
 
     List<ConceptosDePago> listConceptosDePagos() throws SQLException;
 
-
     void actulizaConcepto(ConceptosDePago conceptosDePago) throws SQLException;
 
     void borraConcepto(int idConcepto) throws SQLException;
 
-     ConceptosDePago getConcepto(int idConcepto)throws SQLException;
+    ConceptosDePago getConcepto(int idConcepto) throws SQLException;
 
 }

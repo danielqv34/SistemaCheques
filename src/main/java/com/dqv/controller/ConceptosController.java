@@ -1,23 +1,25 @@
 package com.dqv.controller;
 
 
+import com.dqv.dto.ObtenerSession;
 import com.dqv.Entities.ConceptosDePago;
-import com.dqv.dao.ObtenerSession;
 import com.dqv.services.ConceptosPago.ConceptosService;
+import com.dqv.validations.ConceptosValidator;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.query.Query;
 import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.persistence.Entity;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
@@ -29,7 +31,7 @@ import java.util.List;
 @Controller
 @ManagedBean(name = "conceptosController")
 @ViewScoped
-public class ConceptosController extends ObtenerSession implements Serializable {
+public class ConceptosController implements Serializable {
 
     private ConceptosDePago conceptosDePago;
 
@@ -37,26 +39,22 @@ public class ConceptosController extends ObtenerSession implements Serializable 
     @Autowired
     private ConceptosService conceptosService;
 
-    public boolean agregaConcepeto() throws SQLException {
+    @Autowired
+    private ConceptosValidator conceptosValidator;
 
-        if (existeConcepto() == true) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "Ya existe este de Concepto de Pago"));
+
+    public boolean agregaConcepeto() throws SQLException {
+        if (conceptosValidator.existeConcepto(conceptosDePago.getSiglas()) == true) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Ya existe este de Concepto de Pago"));
             return false;
 
         } else {
-
             conceptosService.agregaConcepto(conceptosDePago);
-
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Concepto Agregado"));
-
             RequestContext.getCurrentInstance().update("frmListaConcetpos:tblConceptos");
-
             RequestContext.getCurrentInstance().reset("frmConceptos:panel");
-
             return true;
         }
-
-
     }
 
     public List<ConceptosDePago> listarConceptos() throws SQLException {
@@ -65,27 +63,17 @@ public class ConceptosController extends ObtenerSession implements Serializable 
 
     public void borraConcepto(int idConcepto) throws SQLException {
         conceptosService.borraConcepto(idConcepto);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Concepto Eliminado!"));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Concepto Eliminado!"));
 
         RequestContext.getCurrentInstance().update("frmListaConcetpos:tblConceptos");
     }
 
-    public boolean existeConcepto() {
-        Criteria criteria = getSession().createCriteria(ConceptosDePago.class);
-        criteria.add(Restrictions.eq("siglas", conceptosDePago.getSiglas()));
-        criteria.setProjection(Projections.rowCount());
-        long count = (Long) criteria.uniqueResult();
-        if (count != 0) {
-            System.out.println("Exite sigla pago");
-            return true;
-        } else {
-            System.out.println("No existe:: Continuo la inserccion");
-            return false;
-        }
-    }
+
+
 
     public ConceptosController() {
         conceptosDePago = new ConceptosDePago();
+        conceptosValidator = new ConceptosValidator();
     }
 
     public ConceptosDePago getConceptosDePago() {
@@ -104,4 +92,11 @@ public class ConceptosController extends ObtenerSession implements Serializable 
         this.conceptosService = conceptosService;
     }
 
+    public ConceptosValidator getConceptosValidator() {
+        return conceptosValidator;
+    }
+
+    public void setConceptosValidator(ConceptosValidator conceptosValidator) {
+        this.conceptosValidator = conceptosValidator;
+    }
 }

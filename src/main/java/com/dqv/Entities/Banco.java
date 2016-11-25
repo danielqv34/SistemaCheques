@@ -6,22 +6,22 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by ezequ on 11/10/2016.
+ * Created by ezequ on 11/24/2016.
  */
 @Entity
 public class Banco {
-    private int id;
+    private Integer id;
     private String codigoBanco;
     private String razonSocial;
-    private int estado;
+    private String estado;
 
     @Id
     @Column(name = "ID", nullable = false, precision = 0)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -46,13 +46,36 @@ public class Banco {
     }
 
     @Basic
-    @Column(name = "ESTADO", nullable = false, precision = 0)
-    public int getEstado() {
+    @Column(name = "ESTADO", nullable = true, length = 2)
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+
+        Banco banco = (Banco) object;
+
+        if (id != null ? !id.equals(banco.id) : banco.id != null) return false;
+        if (codigoBanco != null ? !codigoBanco.equals(banco.codigoBanco) : banco.codigoBanco != null) return false;
+        if (razonSocial != null ? !razonSocial.equals(banco.razonSocial) : banco.razonSocial != null) return false;
+        if (estado != null ? !estado.equals(banco.estado) : banco.estado != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (codigoBanco != null ? codigoBanco.hashCode() : 0);
+        result = 31 * result + (razonSocial != null ? razonSocial.hashCode() : 0);
+        result = 31 * result + (estado != null ? estado.hashCode() : 0);
+        return result;
+    }
 }

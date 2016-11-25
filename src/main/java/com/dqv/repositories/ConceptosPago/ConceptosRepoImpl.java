@@ -1,15 +1,12 @@
 package com.dqv.repositories.ConceptosPago;
 
+import com.dqv.dto.ObtenerSession;
 import com.dqv.Entities.ConceptosDePago;
-import com.dqv.dao.ObtenerSession;
-import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.xml.transform.stream.StreamResult;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Created by ezequ on 11/10/2016.

@@ -2,7 +2,6 @@ package com.dqv.services.Proveedores;
 
 import com.dqv.Entities.Proveedores;
 import com.dqv.repositories.Proveedores.ProveedoresRepo;
-import org.hibernate.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

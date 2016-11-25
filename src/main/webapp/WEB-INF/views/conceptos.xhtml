@@ -6,7 +6,7 @@
                 template="/WEB-INF/templates/template.xhtml">
 
     <ui:define name="subheader">
-      <h2>Mantenimiento de Conceptos de Pagos</h2>
+      <h3>Mantenimiento de Conceptos de Pagos</h3>
     </ui:define>
 
     <ui:define name="content">
@@ -33,13 +33,6 @@
                                     <p:inputText placeholder="Siglas" id="siglas" required="true"
                                                  value="#{conceptosController.conceptosDePago.siglas}" maxlength="11"/>
                                     <br/>
-                                    <p:outputLabel value="Estado: "></p:outputLabel>
-                                    <p:selectOneMenu id="console">
-                                        <f:selectItem itemLabel="Seleccione un Estado" itemValue="#{conceptosController.conceptosDePago.estado}"/>
-                                        <f:selectItem itemLabel="Activo" itemValue="1"/>
-                                        <f:selectItem itemLabel="Inactivo" itemValue="0"/>
-                                    </p:selectOneMenu>
-                                    <br/>
 
                                     <br/>
                                     <p:commandButton action="#{conceptosController.agregaConcepeto()}" ajax="true" type="Reset"
@@ -59,7 +52,6 @@
                                                 <h:form id="frmListaConcetpos">
                                                     <p:dataTable id="tblConceptos" var="conceptos"
                                                                  value="#{conceptosController.listarConceptos()}"
-                                                                 selectionMode="single"
                                                                  rowKey="#{conceptosController.conceptosDePago.id}"
                                                                  rows="10" paginator="true"
                                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -83,6 +75,9 @@
                                                         </p:column>
                                                         <p:column headerText="Siglas" sortBy="#{conceptos.siglas}">
                                                             <h:outputText value="#{conceptos.siglas}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Estado" sortBy="#{conceptos.estado}">
+                                                            <h:outputText value="#{conceptos.estado}"/>
                                                         </p:column>
                                                         <p:column style="text-align:center;">
                                                             <p:commandButton value="Eliminar Concepto" actionListener="#{conceptosController.borraConcepto(conceptos.id)}"/>

@@ -1,8 +1,8 @@
 package com.dqv.repositories.Proveedores;
 
-import com.dqv.Entities.Proveedores;
-import com.dqv.dao.ObtenerSession;
+import com.dqv.dto.ObtenerSession;
 
+import com.dqv.Entities.Proveedores;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

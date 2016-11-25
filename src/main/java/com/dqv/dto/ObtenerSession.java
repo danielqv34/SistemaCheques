@@ -1,4 +1,4 @@
-package com.dqv.dao;
+package com.dqv.dto;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

@@ -3,37 +3,36 @@ package com.dqv.Entities;
 import javax.persistence.*;
 
 /**
- * Created by ezequ on 11/10/2016.
+ * Created by ezequ on 11/24/2016.
  */
 @Entity
 @Table(name = "CONCEPTOS_DE_PAGO", schema = "C##DQUIROZ", catalog = "")
 public class ConceptosDePago {
-    private int id;
-    private int codigoPago;
+    private Integer id;
+    private Integer codigoPago;
     private String descripcionCorta;
     private String descripcionLarga;
     private String siglas;
-    private int estado;
+    private String estado;
 
     @Id
     @Column(name = "ID", nullable = false, precision = 0)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Basic
-    @Column(name = "CODIGO_PAGO", nullable = false, precision = 2,insertable = true)
-    @SequenceGenerator(name="COD_CONCP_PAGOS", sequenceName="COD_CONCP_PAGOS",allocationSize=1 ,initialValue = 100,schema = "C##DQUIROZ")
-    public int getCodigoPago() {
+    @Column(name = "CODIGO_PAGO", nullable = true, precision = 2, insertable = false)
+    public Integer getCodigoPago() {
         return codigoPago;
     }
 
-    public void setCodigoPago(int codigoPago) {
+    public void setCodigoPago(Integer codigoPago) {
         this.codigoPago = codigoPago;
     }
 
@@ -68,12 +67,12 @@ public class ConceptosDePago {
     }
 
     @Basic
-    @Column(name = "ESTADO", nullable = false, precision = 0)
-    public int getEstado() {
+    @Column(name = "ESTADO", nullable = true, length = 2 , insertable = false)
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 

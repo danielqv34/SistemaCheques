@@ -1,7 +1,6 @@
 package com.dqv.services.Proveedores;
 
 import com.dqv.Entities.Proveedores;
-import org.hibernate.Criteria;
 
 import java.sql.SQLException;
 import java.util.List;

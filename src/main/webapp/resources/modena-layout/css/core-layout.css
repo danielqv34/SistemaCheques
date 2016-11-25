@@ -186,16 +186,16 @@ input[type="text"], input[type="password"], textarea{ -webkit-appearance: none; 
 .PaddingTopPercent10{ padding-top: 10%;}
 
 /* Containers */
-.Container100{ width:125%; float:left;}
-.Container96{ width:110%; float:left;}
-.Container90{ width:90%; float:left;}
-.Container85{ width:85%; float:left;}
-.Container80{ width:80%; float:left;}
-.Container75{ width:75%; float:left;}
-.Container70{ width:70%; float:left;}
-.Container66{ width:66.66%; float:left;}
-.Container60{ width:60%; float:left;}
-.Container50{ width:50%; float:left;}
+.Container100{ width:100%; float:left;}
+.Container96{ width:95%; float:left;}
+.Container90{ width:95%; float:left;}
+.Container85{ width:95%; float:left;}
+.Container80{ width:95%; float:left;}
+.Container75{ width:95%; float:left;}
+.Container70{ width:95%; float:left;}
+.Container66{ width:95.66%; float:left;}
+.Container60{ width:95%; float:left;}
+.Container50{ width:95%; float:left;}
 .Container40{ width:40%; float:left;}
 .Container33{ width:33.33%; float:left;}
 .Container30{ width:30%; float:left;}

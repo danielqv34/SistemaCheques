@@ -1,7 +1,15 @@
 package com.dqv.controller;
 
+
+import com.dqv.dto.ObtenerSession;
+import com.dqv.Entities.CuentasContables;
 import com.dqv.Entities.Proveedores;
 import com.dqv.services.Proveedores.ProveedoresService;
+import com.dqv.validations.ProveedoresValidations;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
 import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,26 +27,39 @@ import java.util.List;
 @Controller
 @ManagedBean
 @RequestScoped
-public class ProveedoresController {
+public class ProveedoresController extends ObtenerSession {
 
     private Proveedores proveedores;
+
+    private CuentasContables cuentasContables;
 
     @Autowired
     private ProveedoresService proveedoresService;
 
+    @Autowired
+    private ProveedoresValidations validations;
 
-    public void agregaProveedor() throws SQLException {
-        //if (!validaCuentaContable(proveedores.getCuentaContable())) {
+
+    public boolean agregaProveedor() throws SQLException {
+
+        if (validations.validaCuentaContable(proveedores.getCuentaContable()) == true) {
+
             proveedoresService.agregaProveedor(proveedores);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Proveedor Agregado"));
 
-           RequestContext.getCurrentInstance().update("frmListaProveedores:tblProveedores");
+            RequestContext.getCurrentInstance().update("frmListaProveedores:tblProveedores");
             proveedores = new Proveedores();
 
             RequestContext.getCurrentInstance().reset("frmProveedores:panel");
-//        } else {
-//            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "No existe la Cuenta Contable para este proveedor"));
-//        }
+
+            return true;
+
+
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No existe esta cuenta contable para este Proveedor"));
+            return false;
+
+        }
 
     }
 
@@ -53,13 +74,11 @@ public class ProveedoresController {
         RequestContext.getCurrentInstance().update("frmListaProveedores:tblProveedores");
     }
 
-//    private boolean validaCuentaContable(int idCuenta) throws SQLException {
-//        proveedoresService.obtenerCuenta(idCuenta);
-//        return true;
-//    }
 
     public ProveedoresController() {
         proveedores = new Proveedores();
+        cuentasContables = new CuentasContables();
+        validations = new ProveedoresValidations();
     }
 
     public Proveedores getProveedores() {
@@ -76,5 +95,21 @@ public class ProveedoresController {
 
     public void setProveedoresService(ProveedoresService proveedoresService) {
         this.proveedoresService = proveedoresService;
+    }
+
+    public CuentasContables getCuentasContables() {
+        return cuentasContables;
+    }
+
+    public void setCuentasContables(CuentasContables cuentasContables) {
+        this.cuentasContables = cuentasContables;
+    }
+
+    public ProveedoresValidations getValidations() {
+        return validations;
+    }
+
+    public void setValidations(ProveedoresValidations validations) {
+        this.validations = validations;
     }
 }

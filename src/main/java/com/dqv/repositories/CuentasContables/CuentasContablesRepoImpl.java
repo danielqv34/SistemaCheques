@@ -1,7 +1,7 @@
 package com.dqv.repositories.CuentasContables;
 
+import com.dqv.dto.ObtenerSession;
 import com.dqv.Entities.CuentasContables;
-import com.dqv.dao.ObtenerSession;
 import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;

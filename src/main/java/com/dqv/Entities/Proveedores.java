@@ -4,32 +4,32 @@ import javax.persistence.*;
 import java.sql.Date;
 
 /**
- * Created by ezequ on 11/12/2016.
+ * Created by ezequ on 11/24/2016.
  */
 @Entity
 public class Proveedores {
-    private int id;
+    private Integer id;
     private String nombre;
     private String descripcion;
     private String tipoPersona;
     private String rncCedula;
-    private int cuentaContable;
+    private Integer cuentaContable;
     private Double balance;
     private String direccion;
     private String telefono;
     private String correo;
     private Date fechaInscripcion;
     private Date fechaModificacion;
-    private int estado;
+    private String estado;
 
     @Id
     @Column(name = "ID", nullable = false, precision = 0)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -75,11 +75,11 @@ public class Proveedores {
 
     @Basic
     @Column(name = "CUENTA_CONTABLE", nullable = false, precision = 0)
-    public int getCuentaContable() {
+    public Integer getCuentaContable() {
         return cuentaContable;
     }
 
-    public void setCuentaContable(int cuentaContable) {
+    public void setCuentaContable(Integer cuentaContable) {
         this.cuentaContable = cuentaContable;
     }
 
@@ -144,12 +144,12 @@ public class Proveedores {
     }
 
     @Basic
-    @Column(name = "ESTADO", nullable = false, precision = 0)
-    public int getEstado() {
+    @Column(name = "ESTADO", nullable = true, length = 2,insertable = false)
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 

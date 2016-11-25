@@ -6,7 +6,7 @@
                 template="/WEB-INF/templates/template.xhtml">
 
     <ui:define name="subheader">
-       <h2>Mantenimiento Proveedores</h2>
+       <h3>Mantenimiento Proveedores</h3>
     </ui:define>
 
     <ui:define name="content">
@@ -24,7 +24,7 @@
                                     <p:inputText placeholder="Nombre Proveedor" id="nombre" required="true" size="80"
                                                  value="#{proveedoresController.proveedores.nombre}"/>
                                     <br/>
-                                    <p:outputLabel value="Descricion: " for="desc"></p:outputLabel>
+                                    <p:outputLabel value="Descripcion: " for="desc"></p:outputLabel>
                                     <p:inputText placeholder="Descripcion Proveedor" id="desc" required="true" size="60"
                                                  value="#{proveedoresController.proveedores.descripcion}"/>
                                     <br/>
@@ -36,7 +36,7 @@
                                     <p:inputText placeholder="Cedula o RNC del Proveedor" id="rnc" required="true" size="60"
                                                  value="#{proveedoresController.proveedores.rncCedula}"/>
                                     <br/>
-                                    <p:outputLabel value="Cuenta Contanle: " for="cuentaC"></p:outputLabel>
+                                    <p:outputLabel value="Cuenta Contable: " for="cuentaC"></p:outputLabel>
                                     <p:inputText placeholder="Cuenta Contable" id="cuentaC" required="true" size="60"
                                                  value="#{proveedoresController.proveedores.cuentaContable}"/>
                                     <br/>
@@ -55,13 +55,6 @@
                                     <p:outputLabel value="Correo Electronico: " for="email"></p:outputLabel>
                                     <p:inputText placeholder="Correo Electronico Proveedor" id="email" required="true" size="60"
                                                  value="#{proveedoresController.proveedores.correo}"/>
-                                    <br/>
-                                    <p:outputLabel value="Estado: "></p:outputLabel>
-                                    <p:selectOneMenu id="console">
-                                        <f:selectItem itemLabel="Seleccione un Estado" itemValue="#{proveedoresController.proveedores.estado}"/>
-                                        <f:selectItem itemLabel="Activo" itemValue="1"/>
-                                        <f:selectItem itemLabel="Inactivo" itemValue="0"/>
-                                    </p:selectOneMenu>
                                     <br/>
                                     <p:commandButton action="#{proveedoresController.agregaProveedor()}" ajax="true"
                                                      value="Guardar Proveedor"/>
@@ -89,36 +82,36 @@
                                                             <h3>Lista de Proveedores</h3>
                                                         </f:facet>
 
-                                                        <p:column headerText="ID Proveedor" sortBy="#{proveedores.id}">
-                                                            <h:outputText value="#{proveedores.id}"/>
-                                                        </p:column>
                                                         <p:column headerText="Nombre" sortBy="#{proveedores.nombre}">
                                                             <h:outputText value="#{proveedores.nombre}"/>
                                                         </p:column>
-                                                        <p:column headerText="Descripcion Corta" sortBy="#{proveedores.descripcion}">
+                                                        <p:column headerText="Descripcion" sortBy="#{proveedores.descripcion}">
                                                             <h:outputText value="#{proveedores.descripcion}"/>
                                                         </p:column>
-                                                        <p:column headerText="Descripcion Larga"
+                                                        <p:column headerText="Tipo Persona"
                                                                   sortBy="#{proveedores.tipoPersona}">
                                                             <h:outputText value="#{proveedores.tipoPersona}"/>
                                                         </p:column>
-                                                        <p:column headerText="Siglas" sortBy="#{proveedores.rncCedula}">
+                                                        <p:column headerText="RNC" sortBy="#{proveedores.rncCedula}">
                                                             <h:outputText value="#{proveedores.rncCedula}"/>
                                                         </p:column>
-                                                        <p:column headerText="Siglas" sortBy="#{proveedores.cuentaContable}">
+                                                        <p:column headerText="Cuenta" sortBy="#{proveedores.cuentaContable}">
                                                             <h:outputText value="#{proveedores.cuentaContable}"/>
                                                         </p:column>
-                                                        <p:column headerText="Siglas" sortBy="#{proveedores.balance}">
+                                                        <p:column headerText="Balance Actual" sortBy="#{proveedores.balance}">
                                                             <h:outputText value="#{proveedores.balance}"/>
                                                         </p:column>
-                                                        <p:column headerText="Siglas" sortBy="#{proveedores.direccion}">
+                                                        <p:column headerText="Direccion" sortBy="#{proveedores.direccion}">
                                                             <h:outputText value="#{proveedores.direccion}"/>
                                                         </p:column>
-                                                        <p:column headerText="Siglas" sortBy="#{proveedores.telefono}">
+                                                        <p:column headerText="Telefono" sortBy="#{proveedores.telefono}">
                                                             <h:outputText value="#{proveedores.telefono}"/>
                                                         </p:column>
-                                                        <p:column headerText="Siglas" sortBy="#{proveedores.correo}">
+                                                        <p:column headerText="Correo" sortBy="#{proveedores.correo}">
                                                             <h:outputText value="#{proveedores.correo}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Estado" sortBy="#{proveedores.estado}">
+                                                            <h:outputText value="#{proveedores.estado}"/>
                                                         </p:column>
                                                         <p:column style="text-align:center;">
                                                             <p:commandButton value="Eliminar Proveedor" actionListener="#{proveedoresController.borraProveedor(proveedores.id)}"/>

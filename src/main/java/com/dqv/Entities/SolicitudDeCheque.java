@@ -1,43 +1,41 @@
 package com.dqv.Entities;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 /**
- * Created by ezequ on 11/12/2016.
+ * Created by ezequ on 11/24/2016.
  */
 @Entity
 @Table(name = "SOLICITUD_DE_CHEQUE", schema = "C##DQUIROZ", catalog = "")
 public class SolicitudDeCheque {
-    private int id;
-    private int númeroDeSolicitud;
+    private Integer id;
+    private Integer numeroDeSolicitud;
     private String codigoBanco;
-    private double monto;
+    private Double monto;
     private Date fechaDeRegistro;
     private String estado;
-    private int cuentaContableProveedor;
-    private int cuentaContableBanco;
+    private Integer cuentaContableProveedor;
+    private Integer cuentaContableBanco;
 
     @Id
     @Column(name = "ID", nullable = false, precision = 0)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Basic
-    @Column(name = "NÚMERO_DE_SOLICITUD", nullable = false, precision = 0 , insertable = true)
-    @SequenceGenerator(name="NUM_SOLICITUD", sequenceName="NUM_SOLICITUD",allocationSize=1 ,initialValue = 10,schema = "C##DQUIROZ")
-    public int getNúmeroDeSolicitud() {
-        return númeroDeSolicitud;
+    @Column(name = "NUMERO_DE_SOLICITUD", nullable = true, precision = 0)
+    public Integer getNumeroDeSolicitud() {
+        return numeroDeSolicitud;
     }
 
-    public void setNúmeroDeSolicitud(int númeroDeSolicitud) {
-        this.númeroDeSolicitud = númeroDeSolicitud;
+    public void setNumeroDeSolicitud(Integer numeroDeSolicitud) {
+        this.numeroDeSolicitud = numeroDeSolicitud;
     }
 
     @Basic
@@ -52,11 +50,11 @@ public class SolicitudDeCheque {
 
     @Basic
     @Column(name = "MONTO", nullable = false, precision = 2)
-    public double getMonto() {
+    public Double getMonto() {
         return monto;
     }
 
-    public void setMonto(double monto) {
+    public void setMonto(Double monto) {
         this.monto = monto;
     }
 
@@ -71,7 +69,7 @@ public class SolicitudDeCheque {
     }
 
     @Basic
-    @Column(name = "ESTADO", nullable = true, length = 15)
+    @Column(name = "ESTADO", nullable = true, length = 2)
     public String getEstado() {
         return estado;
     }
@@ -82,21 +80,21 @@ public class SolicitudDeCheque {
 
     @Basic
     @Column(name = "CUENTA_CONTABLE_PROVEEDOR", nullable = false, precision = 0)
-    public int getCuentaContableProveedor() {
+    public Integer getCuentaContableProveedor() {
         return cuentaContableProveedor;
     }
 
-    public void setCuentaContableProveedor(int cuentaContableProveedor) {
+    public void setCuentaContableProveedor(Integer cuentaContableProveedor) {
         this.cuentaContableProveedor = cuentaContableProveedor;
     }
 
     @Basic
     @Column(name = "CUENTA_CONTABLE_BANCO", nullable = false, precision = 0)
-    public int getCuentaContableBanco() {
+    public Integer getCuentaContableBanco() {
         return cuentaContableBanco;
     }
 
-    public void setCuentaContableBanco(int cuentaContableBanco) {
+    public void setCuentaContableBanco(Integer cuentaContableBanco) {
         this.cuentaContableBanco = cuentaContableBanco;
     }
 
@@ -107,32 +105,32 @@ public class SolicitudDeCheque {
 
         SolicitudDeCheque that = (SolicitudDeCheque) object;
 
-        if (id != that.id) return false;
-        if (númeroDeSolicitud != that.númeroDeSolicitud) return false;
-        if (Double.compare(that.monto, monto) != 0) return false;
-        if (cuentaContableProveedor != that.cuentaContableProveedor) return false;
-        if (cuentaContableBanco != that.cuentaContableBanco) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (numeroDeSolicitud != null ? !numeroDeSolicitud.equals(that.numeroDeSolicitud) : that.numeroDeSolicitud != null)
+            return false;
         if (codigoBanco != null ? !codigoBanco.equals(that.codigoBanco) : that.codigoBanco != null) return false;
+        if (monto != null ? !monto.equals(that.monto) : that.monto != null) return false;
         if (fechaDeRegistro != null ? !fechaDeRegistro.equals(that.fechaDeRegistro) : that.fechaDeRegistro != null)
             return false;
         if (estado != null ? !estado.equals(that.estado) : that.estado != null) return false;
+        if (cuentaContableProveedor != null ? !cuentaContableProveedor.equals(that.cuentaContableProveedor) : that.cuentaContableProveedor != null)
+            return false;
+        if (cuentaContableBanco != null ? !cuentaContableBanco.equals(that.cuentaContableBanco) : that.cuentaContableBanco != null)
+            return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = id;
-        result = 31 * result + númeroDeSolicitud;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (numeroDeSolicitud != null ? numeroDeSolicitud.hashCode() : 0);
         result = 31 * result + (codigoBanco != null ? codigoBanco.hashCode() : 0);
-        temp = Double.doubleToLongBits(monto);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (monto != null ? monto.hashCode() : 0);
         result = 31 * result + (fechaDeRegistro != null ? fechaDeRegistro.hashCode() : 0);
         result = 31 * result + (estado != null ? estado.hashCode() : 0);
-        result = 31 * result + cuentaContableProveedor;
-        result = 31 * result + cuentaContableBanco;
+        result = 31 * result + (cuentaContableProveedor != null ? cuentaContableProveedor.hashCode() : 0);
+        result = 31 * result + (cuentaContableBanco != null ? cuentaContableBanco.hashCode() : 0);
         return result;
     }
 }
