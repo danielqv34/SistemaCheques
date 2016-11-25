@@ -1,25 +1,17 @@
 package com.dqv.controller;
 
 
-import com.dqv.dto.ObtenerSession;
+
 import com.dqv.Entities.ConceptosDePago;
 import com.dqv.services.ConceptosPago.ConceptosService;
 import com.dqv.validations.ConceptosValidator;
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
 import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.persistence.Entity;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
