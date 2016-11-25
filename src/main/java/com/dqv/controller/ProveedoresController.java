@@ -74,7 +74,7 @@ public class ProveedoresController extends ObtenerSession {
     public ProveedoresController() {
         proveedores = new Proveedores();
         cuentasContables = new CuentasContables();
-        validations = new ProveedoresValidations();
+        proveedoresValidations = new ProveedoresValidations();
     }
 
     public Proveedores getProveedores() {
