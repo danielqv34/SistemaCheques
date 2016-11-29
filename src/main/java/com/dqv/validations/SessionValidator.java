@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
  * Created by ezequ on 11/28/2016.
  */
 @Controller
-public class SessionController {
+public class SessionValidator {
 
     public static HttpSession getSession() {
         return (HttpSession) FacesContext.getCurrentInstance()

@@ -3,7 +3,7 @@ package com.dqv.controller;
 import com.dqv.Entities.Usuarios;
 import com.dqv.dto.ObtenerSession;
 import com.dqv.validations.LoginValidator;
-import com.dqv.validations.SessionController;
+import com.dqv.validations.SessionValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -29,7 +29,7 @@ public class LoginController extends ObtenerSession {
     public String validaLogin() throws IOException {
         boolean valido = loginValidator.validaUsuario(usuario.getNombreUsuario(), usuario.getClave());
         if (valido) {
-            HttpSession session = SessionController.getSession();
+            HttpSession session = SessionValidator.getSession();
             session.setAttribute("username", usuario.getNombreUsuario());
             FacesContext.getCurrentInstance().getExternalContext().redirect("dashboard.xhtml");
             return "dashboard";
@@ -40,7 +40,7 @@ public class LoginController extends ObtenerSession {
     }
 
     public String logout() throws IOException {
-        HttpSession session = SessionController.getSession();
+        HttpSession session = SessionValidator.getSession();
         session.invalidate();
         FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
         return "login";
