@@ -1,9 +1,6 @@
 package com.dqv.Entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by ezequ on 11/24/2016.
@@ -17,6 +14,7 @@ public class Banco {
 
     @Id
     @Column(name = "ID", nullable = false, precision = 0)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -46,7 +44,7 @@ public class Banco {
     }
 
     @Basic
-    @Column(name = "ESTADO", nullable = true, length = 2)
+    @Column(name = "ESTADO", nullable = true, length = 2, insertable = false)
     public String getEstado() {
         return estado;
     }
@@ -55,27 +53,5 @@ public class Banco {
         this.estado = estado;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
 
-        Banco banco = (Banco) object;
-
-        if (id != null ? !id.equals(banco.id) : banco.id != null) return false;
-        if (codigoBanco != null ? !codigoBanco.equals(banco.codigoBanco) : banco.codigoBanco != null) return false;
-        if (razonSocial != null ? !razonSocial.equals(banco.razonSocial) : banco.razonSocial != null) return false;
-        if (estado != null ? !estado.equals(banco.estado) : banco.estado != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (codigoBanco != null ? codigoBanco.hashCode() : 0);
-        result = 31 * result + (razonSocial != null ? razonSocial.hashCode() : 0);
-        result = 31 * result + (estado != null ? estado.hashCode() : 0);
-        return result;
-    }
 }

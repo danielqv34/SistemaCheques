@@ -1,5 +1,8 @@
 package com.dqv.Entities;
 
+import org.springframework.web.context.annotation.SessionScope;
+
+import javax.faces.bean.ManagedBean;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +12,8 @@ import javax.persistence.Id;
  * Created by ezequ on 11/24/2016.
  */
 @Entity
+@ManagedBean
+@SessionScope
 public class Usuarios {
     private Integer id;
     private Integer idRol;

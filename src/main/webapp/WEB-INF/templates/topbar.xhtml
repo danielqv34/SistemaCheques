@@ -1,9 +1,9 @@
-<ui:composition 
+<ui:composition
 
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://java.sun.com/jsf/html">
     
     
     <!-- TOPBAR START -->
@@ -58,9 +58,12 @@
             <li>
                 <a class="ripplelink"><i class="icon-power"></i> <span class="ShowOnMobile">System</span></a>
                 <ul>
-                    <li><a href="#"><span class="Blue"><i class="icon-airline_seat_individual_suite Fs30 DispBlock"></i> Sleep Mode</span></a></li>
-                    <li><a href="#"><span class="Orange"><i class="icon-track_changes Fs30 DispBlock"></i> Restart System</span></a></li>
-                    <li><a href="#"><span class="Red"><i class="icon-vpn_key Fs30 DispBlock"></i> Logout</span></a></li>
+                    <h:form>
+                        <li><a href="#"><span class="Blue"><i class="icon-airline_seat_individual_suite Fs30 DispBlock"></i> Sleep Mode</span></a></li>
+                        <li><a href="#"><span class="Orange"><i class="icon-track_changes Fs30 DispBlock"></i> Restart System</span></a></li>
+                        <li><p:commandLink actionListener="#{loginController.logout()}"><span class="Red"><i class="icon-vpn_key Fs30 DispBlock"></i> Logout</span></p:commandLink></li>
+                    </h:form>
+
                 </ul>
             </li>
         </ul>

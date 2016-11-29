@@ -38,25 +38,36 @@ public class ProveedoresController extends ObtenerSession {
 
     public boolean agregaProveedor() throws SQLException {
 
-        if (proveedoresValidations.validaCuentaContable(proveedores.getCuentaContable()) == true) {
+        if (proveedoresValidations.existeRegistro(proveedores.getCuentaContable()) != true) {
 
-            proveedoresService.agregaProveedor(proveedores);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Proveedor Agregado"));
+            if (proveedoresValidations.validaCuentaContable(proveedores.getCuentaContable()) == true) {
 
-            RequestContext.getCurrentInstance().update("frmListaProveedores:tblProveedores");
-            proveedores = new Proveedores();
+                if (proveedoresValidations.validaRnc(proveedores.getRncCedula()) == true) {
+                    proveedoresService.agregaProveedor(proveedores);
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Proveedor Agregado"));
 
-            RequestContext.getCurrentInstance().reset("frmProveedores:panel");
+                    RequestContext.getCurrentInstance().update("frmListaProveedores:tblProveedores");
+                    proveedores = new Proveedores();
 
-            return true;
+                    RequestContext.getCurrentInstance().reset("frmProveedores:panel");
 
+                    return true;
 
-        } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No existe esta cuenta contable para este Proveedor"));
+                } else {
+                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No existe este  Proveedor"));
+                    return false;
+                }
+
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No existe esta cuenta contable para este Proveedor"));
+                return false;
+
+            }
+
+        }else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Existe esta cuenta para este proveedor"));
             return false;
-
         }
-
     }
 
     public List<Proveedores> proveedoresList() throws SQLException {

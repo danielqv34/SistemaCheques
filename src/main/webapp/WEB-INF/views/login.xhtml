@@ -7,13 +7,13 @@
 
 <h:head>
     <f:facet name="first">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
     </f:facet>
     <title>PrimeFaces Modena</title>
-    <ui:insert name="head" />
+    <ui:insert name="head"/>
 </h:head>
 
 <h:body styleClass="GrayModena Geometry" style="height:auto;">
@@ -24,39 +24,60 @@
             <div class="EmptyBox30"></div>
             <div class="Card ShadowEffect">
                 <div class="EmptyBox20"></div>
-                <div class="Wid100 OvHidden BigTopic Fs30"><i class="icon-security Fs60 DispBlock"></i> Inicia Sesion</div>
+                <div class="Wid100 OvHidden BigTopic Fs30"><i class="icon-security Fs60 DispBlock"></i> Inicia Sesion
+                </div>
                 <div class="EmptyBox30"></div>
-                <div class="Wid100"><p:inputText placeholder="Usuario" required="true" styleClass="Wid80 TexAlCenter Fs18"/></div>
-                <div class="EmptyBox10"></div>
-                <div class="Wid100"><p:inputText type="password" required="true" placeholder="Contraseña" styleClass="Wid80 TexAlCenter Fs18"/></div>
-                <div class="EmptyBox30"></div>
+
                 <!--<p:selectBooleanCheckbox value="accept" itemLabel="I Accept Terms And Policies"/>-->
                 <!--<div class="EmptyBox30"></div>-->
-                <div class="Wid50 Fleft Responsive50"><p:button value="Iniciar Sesion" icon="fa fa-sign-in" styleClass=" Fs18 White RaisedButton Fright FloatNoneOnMobile" href="dashboard.xhtml"/></div>
-                <div class="EmptyBox5 ShowOnMobile"></div>
-                <div class="Wid50 Fleft Responsive50"><p:button value="Olvido la Contraseña?" icon="fa fa-lock" styleClass="RedButton Fs18 White RaisedButton Fleft FloatNoneOnMobile"/></div>
-                <div class="EmptyBox20"></div>
-                <div class="Separator"></div>
-                <div class="Wid100 OvHidden BigTopic Fs30">Solicitud de Acceso</div>
-                <div class="Wid100">
-                    <div class="Wid100"><p:inputText placeholder="Correo Electronico" styleClass="Wid80 TexAlCenter Fs18"/></div>
+                <h:form id="loginForm">
+                    <p:growl id="mensajeGeneral" showDetail="true"/>
+                    <!--<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>-->
+
+                    <div class="Wid100"><p:inputText placeholder="Usuario"
+                                                     value="#{loginController.login.nombreUsuario}" required="true"
+                                                     styleClass="Wid80 TexAlCenter Fs18"/></div>
                     <div class="EmptyBox10"></div>
-                    <p:button value="Enviar Solicitud" styleClass="PurpleButton Fs18 White RaisedButton"/>
-                </div>
-                <div class="EmptyBox20"></div>
+                    <div class="Wid100"><p:inputText type="password" required="true"
+                                                     value="#{loginController.login.clave}" placeholder="Contraseña"
+                                                     styleClass="Wid80 TexAlCenter Fs18"/></div>
+                    <div class="EmptyBox30"></div>
+                    <div class="Wid50 Fleft Responsive50"><p:commandButton value="Iniciar Sesion"
+                                                                           actionListener="#{loginController.validaLogin()}"
+                                                                           icon="fa fa-sign-in" update="loginForm"
+                                                                           styleClass=" Fs18 White RaisedButton Fright FloatNoneOnMobile"
+                                                                            /></div>
+
+                    <div class="EmptyBox5 ShowOnMobile"></div>
+                    <div class="Wid50 Fleft Responsive50"><p:button value="Olvido la Contraseña?" icon="fa fa-lock"
+                                                                    styleClass="RedButton Fs18 White RaisedButton Fleft FloatNoneOnMobile"/>
+                    </div>
+                    <div class="EmptyBox20"></div>
+                    <div class="Separator"></div>
+                    <div class="Wid100 OvHidden BigTopic Fs30">Solicitud de Acceso</div>
+                    <div class="Wid100">
+                        <div class="Wid100"><p:inputText placeholder="Correo Electronico"
+                                                         styleClass="Wid80 TexAlCenter Fs18"/></div>
+                        <div class="EmptyBox10"></div>
+                        <p:button value="Enviar Solicitud" styleClass="PurpleButton Fs18 White RaisedButton"/>
+                    </div>
+                    <div class="EmptyBox20"></div>
+                </h:form>
             </div>
+
+
             <div class="Wid100 TexAlCenter MarTop20 Fs14 FontRobotoRegular Gray">
-                <i class="fa fa-copyright"></i>  PrimeFaces Modena Theme And Layout <br/> All rights reserved.
+                <i class="fa fa-copyright"></i> PrimeFaces Modena Theme And Layout <br/> All rights reserved.
             </div>
         </div>
     </div>
 
-    <h:outputStylesheet name="css/core-layout.css" library="modena-layout" />
-    <h:outputStylesheet name="css/animate.css" library="modena-layout" />
-    <h:outputStylesheet name="css/modena-font.css" library="modena-layout" />
-    <h:outputStylesheet name="css/ripple-effect.css" library="modena-layout" />
-    <h:outputStylesheet name="css/font-awesome.css" library="modena-layout" />
-    <h:outputStylesheet name="css/modena-layout.css" library="modena-layout" />
+    <h:outputStylesheet name="css/core-layout.css" library="modena-layout"/>
+    <h:outputStylesheet name="css/animate.css" library="modena-layout"/>
+    <h:outputStylesheet name="css/modena-font.css" library="modena-layout"/>
+    <h:outputStylesheet name="css/ripple-effect.css" library="modena-layout"/>
+    <h:outputStylesheet name="css/font-awesome.css" library="modena-layout"/>
+    <h:outputStylesheet name="css/modena-layout.css" library="modena-layout"/>
 </h:body>
 
 </html>

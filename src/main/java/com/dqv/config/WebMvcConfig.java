@@ -40,7 +40,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("forward:/login.xhtml");
+      //  registry.addViewController("/").setViewName("forward:/login.xhtml");
     }
 
 }
