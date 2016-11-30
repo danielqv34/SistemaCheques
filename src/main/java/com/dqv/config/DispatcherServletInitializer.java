@@ -42,8 +42,8 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
         // Causes Facelets to refresh templates during development
         servletContext.setInitParameter("javax.faces.FACELETS_REFRESH_PERIOD", "1");
         // Declare Spring Security Facelets tag library
-        servletContext.setInitParameter("javax.faces.FACELETS_LIBRARIES", "/WEB-INF/springsecurity.taglib.xml");
-
+      //  servletContext.setInitParameter("javax.faces.FACELETS_LIBRARIES", "/WEB-INF/views/login.xhtml");
+     //   servletContext.getContextPath("/WEB-INF/views/login.xhtml");
         servletContext.setInitParameter("primefaces.THEME","modena");
 
         servletContext.addListener(ConfigureListener.class);
@@ -56,4 +56,5 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
     public void setServletContext(ServletContext servletContext) {
         servletContext.setInitParameter("com.sun.faces.forceLoadConfiguration", Boolean.TRUE.toString());
     }
+
 }

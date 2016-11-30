@@ -1,7 +1,7 @@
 package com.dqv.repositories.SolicitudDeCheque;
 
-import com.dqv.dto.ObtenerSession;
 import com.dqv.Entities.SolicitudDeCheque;
+import com.dqv.dto.ObtenerSession;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

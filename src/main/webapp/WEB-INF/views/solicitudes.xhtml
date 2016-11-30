@@ -20,9 +20,17 @@
                                 <!--<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>-->
                                 <p:panelGrid columns="3" layout="grid" id="panel" style="border:0px !important; background:none;"
                                              styleClass="ui-panelgrid-blank">
-                                    <p:outputLabel value="Codigo del Banco: " for="codB"></p:outputLabel>
-                                    <p:inputText placeholder="Codigo del Banco" id="codB" required="true" size="40"
-                                                 value="#{solicitudesController.solicitudDeCheque.codigoBanco}"/>
+                                    <p:outputLabel value="RNC o Cedula Proveedor: " for="rnc"></p:outputLabel>
+                                    <p:inputText placeholder="Cedula o RNC proveedor" id="rnc" required="true" size="40"
+                                                 value="#{solicitudesController.solicitudDeCheque.rncCedulaProveedor}"/>
+                                    <br/>
+                                    <p:outputLabel value="Tipo Movimiento: " for="tm"></p:outputLabel>
+                                    <p:inputText placeholder="Tipo Movimiento" id="tm" required="true" size="40"
+                                                 value="#{solicitudesController.solicitudDeCheque.tipoMovimiento}"/>
+                                    <br/>
+                                    <p:outputLabel value="Cuenta en Contabilidad: " for="cc"></p:outputLabel>
+                                    <p:inputText placeholder="Cuenta en Contabilidad" id="cc" required="true"
+                                                 value="#{solicitudesController.solicitudDeCheque.idCuentaCont}"/>
                                     <br/>
                                     <p:outputLabel value="Monto: " for="mcheque"></p:outputLabel>
                                     <p:inputText placeholder="Monto del Cheque" id="mcheque" required="true"
@@ -32,7 +40,7 @@
                                     <p:calendar id="popup" value="#{solicitudesController.solicitudDeCheque.fechaDeRegistro}" />
                                     <br/>
                                     <p:outputLabel value="Cuenta contable del proveedor: " for="cprov"></p:outputLabel>
-                                    <p:inputText placeholder="Cuenta contable del preedor" id="cprov" required="true"
+                                    <p:inputText placeholder="Cuenta contable del proveedor" id="cprov" required="true"
                                                  value="#{solicitudesController.solicitudDeCheque.cuentaContableProveedor}"/>
                                     <br/>
                                     <p:outputLabel value="Cuenta Banco: " for="siglas"></p:outputLabel>
@@ -58,7 +66,6 @@
                                                 <h:form id="frmListaSolicitudes">
                                                     <p:dataTable id="tblSolc" var="solicitudes"
                                                                  value="#{solicitudesController.chequeList()}"
-                                                                 selectionMode="single"
                                                                  rowKey="#{solicitudesController.solicitudDeCheque.id}"
                                                                  rows="10" paginator="true"
                                                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -73,17 +80,26 @@
                                                         <p:column headerText="ID Solicitud" sortBy="#{solicitudes.id}">
                                                             <h:outputText value="#{solicitudes.id}"/>
                                                         </p:column>
-                                                        <p:column headerText="Numero de Solicitud" sortBy="#{solicitudes.númeroDeSolicitud}">
-                                                            <h:outputText value="#{solicitudes.númeroDeSolicitud}"/>
+                                                        <p:column headerText="Numero de Solicitud" sortBy="#{solicitudes.numeroDeSolicitud}">
+                                                            <h:outputText value="#{solicitudes.numeroDeSolicitud}"/>
                                                         </p:column>
-                                                        <p:column headerText="Codigo Banco" sortBy="#{solicitudes.codigoBanco}">
-                                                            <h:outputText value="#{solicitudes.codigoBanco}"/>
+                                                        <p:column headerText="Proveedor" sortBy="#{solicitudes.rncCedulaProveedor}">
+                                                            <h:outputText value="#{solicitudes.rncCedulaProveedor}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Tipo Movimiento" sortBy="#{solicitudes.tipoMovimiento}">
+                                                            <h:outputText value="#{solicitudes.tipoMovimiento}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Cuenta Contable" sortBy="#{solicitudes.idCuentaCont}">
+                                                            <h:outputText value="#{solicitudes.idCuentaCont}"/>
                                                         </p:column>
                                                         <p:column headerText="Monto" sortBy="#{solicitudes.monto}">
                                                             <h:outputText value="#{solicitudes.monto}"/>
                                                         </p:column>
                                                         <p:column headerText="Fecha de Registro" sortBy="#{solicitudes.fechaDeRegistro}">
                                                             <h:outputText value="#{solicitudes.fechaDeRegistro}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Estado" sortBy="#{solicitudes.estado}">
+                                                            <h:outputText value="#{solicitudes.estado}"/>
                                                         </p:column>
                                                         <p:column headerText="Cuenta Contable Proveedor" sortBy="#{solicitudes.cuentaContableProveedor}">
                                                             <h:outputText value="#{solicitudes.cuentaContableProveedor}"/>
@@ -92,7 +108,10 @@
                                                             <h:outputText value="#{solicitudes.cuentaContableBanco}"/>
                                                         </p:column>
                                                         <p:column style="text-align:center;">
-                                                            <p:commandButton value="Eliminar Solicitud" actionListener="#{solicitudesController.borraSolicitud(solicitudes.id)}"/>
+                                                            <p:commandButton value="Procesar" actionListener="#{solicitudesController.borraSolicitud(solicitudes.id)}"/>
+                                                        </p:column>
+                                                        <p:column style="text-align:center;">
+                                                            <p:commandButton value="Eliminar Solicitud"/>
                                                         </p:column>
                                                     </p:dataTable>
                                                 </h:form>

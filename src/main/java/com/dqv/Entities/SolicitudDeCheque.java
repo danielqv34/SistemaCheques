@@ -1,17 +1,19 @@
 package com.dqv.Entities;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 /**
- * Created by ezequ on 11/24/2016.
+ * Created by ezequ on 11/29/2016.
  */
 @Entity
 @Table(name = "SOLICITUD_DE_CHEQUE", schema = "C##DQUIROZ", catalog = "")
 public class SolicitudDeCheque {
     private Integer id;
     private Integer numeroDeSolicitud;
-    private String codigoBanco;
+    private String rncCedulaProveedor;
+    private String tipoMovimiento;
+    private Integer idCuentaCont;
     private Double monto;
     private Date fechaDeRegistro;
     private String estado;
@@ -20,6 +22,7 @@ public class SolicitudDeCheque {
 
     @Id
     @Column(name = "ID", nullable = false, precision = 0)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -29,7 +32,7 @@ public class SolicitudDeCheque {
     }
 
     @Basic
-    @Column(name = "NUMERO_DE_SOLICITUD", nullable = true, precision = 0)
+    @Column(name = "NUMERO_DE_SOLICITUD", nullable = true, precision = 0,insertable = false)
     public Integer getNumeroDeSolicitud() {
         return numeroDeSolicitud;
     }
@@ -39,13 +42,33 @@ public class SolicitudDeCheque {
     }
 
     @Basic
-    @Column(name = "CODIGO_BANCO", nullable = false, length = 10)
-    public String getCodigoBanco() {
-        return codigoBanco;
+    @Column(name = "RNC_CEDULA_PROVEEDOR", nullable = false, length = 11)
+    public String getRncCedulaProveedor() {
+        return rncCedulaProveedor;
     }
 
-    public void setCodigoBanco(String codigoBanco) {
-        this.codigoBanco = codigoBanco;
+    public void setRncCedulaProveedor(String rncCedulaProveedor) {
+        this.rncCedulaProveedor = rncCedulaProveedor;
+    }
+
+    @Basic
+    @Column(name = "TIPO_MOVIMIENTO", nullable = false, length = 2)
+    public String getTipoMovimiento() {
+        return tipoMovimiento;
+    }
+
+    public void setTipoMovimiento(String tipoMovimiento) {
+        this.tipoMovimiento = tipoMovimiento;
+    }
+
+    @Basic
+    @Column(name = "ID_CUENTA_CONT", nullable = false, precision = 0)
+    public Integer getIdCuentaCont() {
+        return idCuentaCont;
+    }
+
+    public void setIdCuentaCont(Integer idCuentaCont) {
+        this.idCuentaCont = idCuentaCont;
     }
 
     @Basic
@@ -69,7 +92,7 @@ public class SolicitudDeCheque {
     }
 
     @Basic
-    @Column(name = "ESTADO", nullable = true, length = 2)
+    @Column(name = "ESTADO", nullable = true, length = 2,insertable = false)
     public String getEstado() {
         return estado;
     }
@@ -108,7 +131,11 @@ public class SolicitudDeCheque {
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (numeroDeSolicitud != null ? !numeroDeSolicitud.equals(that.numeroDeSolicitud) : that.numeroDeSolicitud != null)
             return false;
-        if (codigoBanco != null ? !codigoBanco.equals(that.codigoBanco) : that.codigoBanco != null) return false;
+        if (rncCedulaProveedor != null ? !rncCedulaProveedor.equals(that.rncCedulaProveedor) : that.rncCedulaProveedor != null)
+            return false;
+        if (tipoMovimiento != null ? !tipoMovimiento.equals(that.tipoMovimiento) : that.tipoMovimiento != null)
+            return false;
+        if (idCuentaCont != null ? !idCuentaCont.equals(that.idCuentaCont) : that.idCuentaCont != null) return false;
         if (monto != null ? !monto.equals(that.monto) : that.monto != null) return false;
         if (fechaDeRegistro != null ? !fechaDeRegistro.equals(that.fechaDeRegistro) : that.fechaDeRegistro != null)
             return false;
@@ -125,7 +152,9 @@ public class SolicitudDeCheque {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (numeroDeSolicitud != null ? numeroDeSolicitud.hashCode() : 0);
-        result = 31 * result + (codigoBanco != null ? codigoBanco.hashCode() : 0);
+        result = 31 * result + (rncCedulaProveedor != null ? rncCedulaProveedor.hashCode() : 0);
+        result = 31 * result + (tipoMovimiento != null ? tipoMovimiento.hashCode() : 0);
+        result = 31 * result + (idCuentaCont != null ? idCuentaCont.hashCode() : 0);
         result = 31 * result + (monto != null ? monto.hashCode() : 0);
         result = 31 * result + (fechaDeRegistro != null ? fechaDeRegistro.hashCode() : 0);
         result = 31 * result + (estado != null ? estado.hashCode() : 0);
