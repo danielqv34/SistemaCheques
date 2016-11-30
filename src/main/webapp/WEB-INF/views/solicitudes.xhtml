@@ -17,7 +17,7 @@
                         <div class="ContainerIndent">
                             <h2 class="BigTopic">Formulario de Solicitudes de Cheques</h2>
                             <h:form id="frmSolicitudes">
-                                <!--<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>-->
+                                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
                                 <p:panelGrid columns="3" layout="grid" id="panel" style="border:0px !important; background:none;"
                                              styleClass="ui-panelgrid-blank">
                                     <p:outputLabel value="RNC o Cedula Proveedor: " for="rnc"></p:outputLabel>
@@ -47,9 +47,8 @@
                                     <p:inputText placeholder="Cuenta Contable Banco" id="siglas" required="true"
                                                  value="#{solicitudesController.solicitudDeCheque.cuentaContableBanco}"/>
                                     <br/>
-                                    <p:commandButton action="#{solicitudesController.creaSolicitud()}" update="frmSolicitudes"
+                                    <p:commandButton action="#{solicitudesController.creaSolicitud()}"
                                                      value="Crea Solicitud"/>
-                                    <!--<p:commandButton value="Eliminar Concepto"/>-->
 
                                 </p:panelGrid>
 
@@ -75,7 +74,6 @@
                                                         <f:facet name="header">
                                                           Lista de Solicitudes
                                                         </f:facet>
-
 
                                                         <p:column headerText="ID Solicitud" sortBy="#{solicitudes.id}">
                                                             <h:outputText value="#{solicitudes.id}"/>
@@ -108,10 +106,10 @@
                                                             <h:outputText value="#{solicitudes.cuentaContableBanco}"/>
                                                         </p:column>
                                                         <p:column style="text-align:center;">
-                                                            <p:commandButton value="Procesar" actionListener="#{solicitudesController.borraSolicitud(solicitudes.id)}"/>
+                                                            <p:commandButton value="Procesar" actionListener="#{solicitudesController.procesaCheque()}"/>
                                                         </p:column>
                                                         <p:column style="text-align:center;">
-                                                            <p:commandButton value="Eliminar Solicitud"/>
+                                                            <p:commandButton value="Eliminar" actionListener="#{solicitudesController.borraSolicitud(solicitudes.id)}"/>
                                                         </p:column>
                                                     </p:dataTable>
                                                 </h:form>

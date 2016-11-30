@@ -4,9 +4,9 @@
     <schema id="1" name="C##DQUIROZ">
       <object-id>102</object-id>
       <created-timestamp>2016-07-11.19:43:26</created-timestamp>
-      <modified-timestamp>2016-11-29.19:56:37</modified-timestamp>
+      <modified-timestamp>2016-11-30.00:47:51</modified-timestamp>
       <visible>1</visible>
-      <introspection-timestamp>2016-11-29.19:58:44</introspection-timestamp>
+      <introspection-timestamp>2016-11-30.00:49:29</introspection-timestamp>
     </schema>
     <schema id="2" name="PUBLIC">
       <object-id>1</object-id>
@@ -817,7 +817,7 @@
     <routine id="140" parent="1" name="SP_INSERTA_CHEQUES">
       <object-id>105289</object-id>
       <created-timestamp>2016-11-29.19:28:45</created-timestamp>
-      <modified-timestamp>2016-11-29.19:56:37</modified-timestamp>
+      <modified-timestamp>2016-11-30.00:47:51</modified-timestamp>
       <routine-kind>PROCEDURE</routine-kind>
     </routine>
     <routine id="141" parent="1" name="SP_INSERTA_PERSONAS">
@@ -3940,267 +3940,271 @@ USERNAME</columns>
       <direction>IN</direction>
       <data-type>CHAR|0</data-type>
     </argument>
-    <argument id="690" parent="141" name="V_NOMBRE">
-      <direction>IN</direction>
-      <data-type>VARCHAR2|0</data-type>
-    </argument>
-    <argument id="691" parent="141" name="V_APELLIDO">
-      <direction>IN</direction>
-      <data-type>NVARCHAR2|0</data-type>
-    </argument>
-    <argument id="692" parent="141" name="V_CEDULA">
+    <argument id="690" parent="140" name="V_CEDULA">
       <direction>IN</direction>
       <data-type>CHAR|0</data-type>
     </argument>
-    <argument id="693" parent="141" name="V_CORREOELECTRONICO">
+    <argument id="691" parent="141" name="V_NOMBRE">
+      <direction>IN</direction>
+      <data-type>VARCHAR2|0</data-type>
+    </argument>
+    <argument id="692" parent="141" name="V_APELLIDO">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="694" parent="141" name="V_ESTADO">
+    <argument id="693" parent="141" name="V_CEDULA">
+      <direction>IN</direction>
+      <data-type>CHAR|0</data-type>
+    </argument>
+    <argument id="694" parent="141" name="V_CORREOELECTRONICO">
+      <direction>IN</direction>
+      <data-type>NVARCHAR2|0</data-type>
+    </argument>
+    <argument id="695" parent="141" name="V_ESTADO">
       <direction>IN</direction>
       <data-type>NUMBER|0</data-type>
     </argument>
-    <argument id="695" parent="141" name="V_FECHANACIMIENTO">
+    <argument id="696" parent="141" name="V_FECHANACIMIENTO">
       <direction>IN</direction>
       <data-type>DATE|0</data-type>
     </argument>
-    <argument id="696" parent="141" name="V_FECHAREGISTRO">
+    <argument id="697" parent="141" name="V_FECHAREGISTRO">
       <direction>IN</direction>
       <data-type>DATE|0</data-type>
     </argument>
-    <argument id="697" parent="141" name="V_FECHAACTUALIZACION">
+    <argument id="698" parent="141" name="V_FECHAACTUALIZACION">
       <direction>IN</direction>
       <data-type>DATE|0</data-type>
     </argument>
-    <routine id="698" parent="142" name="SP_LOCAL_INSERTA_AUTOS">
+    <routine id="699" parent="142" name="SP_LOCAL_INSERTA_AUTOS">
       <routine-kind>PROCEDURE</routine-kind>
     </routine>
-    <routine id="699" parent="142" name="SP_ACTUALIZA_AUTOS">
+    <routine id="700" parent="142" name="SP_ACTUALIZA_AUTOS">
       <routine-kind>PROCEDURE</routine-kind>
     </routine>
-    <body id="700" parent="143" name="PKG_PROCESOS_AUTOMOVILES">
+    <body id="701" parent="143" name="PKG_PROCESOS_AUTOMOVILES">
       <object-id>97833</object-id>
       <created-timestamp>2016-09-29.00:45:01</created-timestamp>
       <modified-timestamp>2016-09-29.23:56:38</modified-timestamp>
       <invalid>1</invalid>
     </body>
-    <routine id="701" parent="143" name="SP_LOCAL_INSERTA_AUTOS">
+    <routine id="702" parent="143" name="SP_LOCAL_INSERTA_AUTOS">
       <routine-kind>PROCEDURE</routine-kind>
     </routine>
-    <routine id="702" parent="143" name="SP_ACTUALIZA_AUTOS">
+    <routine id="703" parent="143" name="SP_ACTUALIZA_AUTOS">
       <routine-kind>PROCEDURE</routine-kind>
     </routine>
-    <routine id="703" parent="144" name="SP_INSERTA_CIUDADANO">
+    <routine id="704" parent="144" name="SP_INSERTA_CIUDADANO">
       <routine-kind>PROCEDURE</routine-kind>
     </routine>
-    <body id="704" parent="145" name="PROCESOS_AUTOMOVILES">
+    <body id="705" parent="145" name="PROCESOS_AUTOMOVILES">
       <object-id>97668</object-id>
       <created-timestamp>2016-09-26.23:28:10</created-timestamp>
       <modified-timestamp>2016-10-19.23:56:36</modified-timestamp>
     </body>
-    <routine id="705" parent="145" name="SP_LOCAL_INSERTA_AUTOS">
+    <routine id="706" parent="145" name="SP_LOCAL_INSERTA_AUTOS">
       <routine-kind>PROCEDURE</routine-kind>
     </routine>
-    <routine id="706" parent="145" name="SP_ACTUALIZA_AUTOS">
+    <routine id="707" parent="145" name="SP_ACTUALIZA_AUTOS">
       <routine-kind>PROCEDURE</routine-kind>
     </routine>
-    <argument id="707" parent="698" name="V_MARCA">
+    <argument id="708" parent="699" name="V_MARCA">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="708" parent="698" name="V_MODELO">
+    <argument id="709" parent="699" name="V_MODELO">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="709" parent="698" name="V_MATRICULA">
+    <argument id="710" parent="699" name="V_MATRICULA">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="710" parent="698" name="V_ANIO">
+    <argument id="711" parent="699" name="V_ANIO">
       <direction>IN</direction>
       <data-type>NUMBER|0</data-type>
     </argument>
-    <argument id="711" parent="698" name="V_COLOR">
+    <argument id="712" parent="699" name="V_COLOR">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="712" parent="698" name="V_COMBUSTIBLE">
+    <argument id="713" parent="699" name="V_COMBUSTIBLE">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="713" parent="698" name="V_FECHA_REGISTRO">
+    <argument id="714" parent="699" name="V_FECHA_REGISTRO">
       <direction>IN</direction>
       <data-type>DATE|0</data-type>
     </argument>
-    <argument id="714" parent="698" name="V_FECHA_ACTUALIZACION">
+    <argument id="715" parent="699" name="V_FECHA_ACTUALIZACION">
       <direction>IN</direction>
       <data-type>DATE|0</data-type>
     </argument>
-    <argument id="715" parent="699" name="V_MARCA">
+    <argument id="716" parent="700" name="V_MARCA">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="716" parent="699" name="V_MODELO">
+    <argument id="717" parent="700" name="V_MODELO">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="717" parent="699" name="V_MATRICULA">
+    <argument id="718" parent="700" name="V_MATRICULA">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="718" parent="699" name="V_ANIO">
+    <argument id="719" parent="700" name="V_ANIO">
       <direction>IN</direction>
       <data-type>NUMBER|0</data-type>
     </argument>
-    <argument id="719" parent="699" name="V_COLOR">
+    <argument id="720" parent="700" name="V_COLOR">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="720" parent="699" name="V_COMBUSTIBLE">
+    <argument id="721" parent="700" name="V_COMBUSTIBLE">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="721" parent="699" name="V_FECHA_REGISTRO">
+    <argument id="722" parent="700" name="V_FECHA_REGISTRO">
       <direction>IN</direction>
       <data-type>DATE|0</data-type>
     </argument>
-    <argument id="722" parent="699" name="V_FECHA_ACTUALIZACION">
+    <argument id="723" parent="700" name="V_FECHA_ACTUALIZACION">
       <direction>IN</direction>
       <data-type>DATE|0</data-type>
     </argument>
-    <argument id="723" parent="701" name="V_MARCA">
+    <argument id="724" parent="702" name="V_MARCA">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="724" parent="701" name="V_MODELO">
+    <argument id="725" parent="702" name="V_MODELO">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="725" parent="701" name="V_MATRICULA">
+    <argument id="726" parent="702" name="V_MATRICULA">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="726" parent="701" name="V_ANIO">
+    <argument id="727" parent="702" name="V_ANIO">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="727" parent="701" name="V_COLOR">
+    <argument id="728" parent="702" name="V_COLOR">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="728" parent="701" name="V_COMBUSTIBLE">
+    <argument id="729" parent="702" name="V_COMBUSTIBLE">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="729" parent="701" name="V_FECHA_REGISTRO">
+    <argument id="730" parent="702" name="V_FECHA_REGISTRO">
       <direction>IN</direction>
       <data-type>DATE|0</data-type>
     </argument>
-    <argument id="730" parent="701" name="V_FECHA_ACTUALIZACION">
+    <argument id="731" parent="702" name="V_FECHA_ACTUALIZACION">
       <direction>IN</direction>
       <data-type>DATE|0</data-type>
     </argument>
-    <argument id="731" parent="702" name="V_MARCA">
+    <argument id="732" parent="703" name="V_MARCA">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="732" parent="702" name="V_MODELO">
+    <argument id="733" parent="703" name="V_MODELO">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="733" parent="702" name="V_MATRICULA">
+    <argument id="734" parent="703" name="V_MATRICULA">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="734" parent="702" name="V_ANIO">
+    <argument id="735" parent="703" name="V_ANIO">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="735" parent="702" name="V_COLOR">
+    <argument id="736" parent="703" name="V_COLOR">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="736" parent="702" name="V_COMBUSTIBLE">
+    <argument id="737" parent="703" name="V_COMBUSTIBLE">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="737" parent="702" name="V_FECHA_REGISTRO">
+    <argument id="738" parent="703" name="V_FECHA_REGISTRO">
       <direction>IN</direction>
       <data-type>DATE|0</data-type>
     </argument>
-    <argument id="738" parent="702" name="V_FECHA_ACTUALIZACION">
+    <argument id="739" parent="703" name="V_FECHA_ACTUALIZACION">
       <direction>IN</direction>
       <data-type>DATE|0</data-type>
     </argument>
-    <argument id="739" parent="703" name="NOMBRE">
+    <argument id="740" parent="704" name="NOMBRE">
       <direction>IN</direction>
       <data-type>VARCHAR2|0</data-type>
     </argument>
-    <argument id="740" parent="703" name="APELLIDO">
+    <argument id="741" parent="704" name="APELLIDO">
       <direction>IN</direction>
       <data-type>VARCHAR2|0</data-type>
     </argument>
-    <argument id="741" parent="705" name="V_MARCA">
+    <argument id="742" parent="706" name="V_MARCA">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="742" parent="705" name="V_MODELO">
+    <argument id="743" parent="706" name="V_MODELO">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="743" parent="705" name="V_MATRICULA">
+    <argument id="744" parent="706" name="V_MATRICULA">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="744" parent="705" name="V_ANIO">
+    <argument id="745" parent="706" name="V_ANIO">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="745" parent="705" name="V_COLOR">
+    <argument id="746" parent="706" name="V_COLOR">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="746" parent="705" name="V_COMBUSTIBLE">
+    <argument id="747" parent="706" name="V_COMBUSTIBLE">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="747" parent="705" name="V_FECHA_REGISTRO">
+    <argument id="748" parent="706" name="V_FECHA_REGISTRO">
       <direction>IN</direction>
       <data-type>DATE|0</data-type>
     </argument>
-    <argument id="748" parent="705" name="V_FECHA_ACTUALIZACION">
+    <argument id="749" parent="706" name="V_FECHA_ACTUALIZACION">
       <direction>IN</direction>
       <data-type>DATE|0</data-type>
     </argument>
-    <argument id="749" parent="706" name="V_MARCA">
+    <argument id="750" parent="707" name="V_MARCA">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="750" parent="706" name="V_MODELO">
+    <argument id="751" parent="707" name="V_MODELO">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="751" parent="706" name="V_MATRICULA">
+    <argument id="752" parent="707" name="V_MATRICULA">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="752" parent="706" name="V_ANIO">
+    <argument id="753" parent="707" name="V_ANIO">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="753" parent="706" name="V_COLOR">
+    <argument id="754" parent="707" name="V_COLOR">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="754" parent="706" name="V_COMBUSTIBLE">
+    <argument id="755" parent="707" name="V_COMBUSTIBLE">
       <direction>IN</direction>
       <data-type>NVARCHAR2|0</data-type>
     </argument>
-    <argument id="755" parent="706" name="V_FECHA_REGISTRO">
+    <argument id="756" parent="707" name="V_FECHA_REGISTRO">
       <direction>IN</direction>
       <data-type>DATE|0</data-type>
     </argument>
-    <argument id="756" parent="706" name="V_FECHA_ACTUALIZACION">
+    <argument id="757" parent="707" name="V_FECHA_ACTUALIZACION">
       <direction>IN</direction>
       <data-type>DATE|0</data-type>
     </argument>

@@ -12,6 +12,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
@@ -35,16 +36,17 @@ public class ConceptosController implements Serializable {
     private ConceptosValidator conceptosValidator;
 
 
-    public boolean agregaConcepeto() throws SQLException {
+    public boolean agregaConcepeto() throws SQLException, IOException {
         if (conceptosValidator.existeConcepto(conceptosDePago.getSiglas()) == true) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "Ya existe este de Concepto de Pago"));
+            RequestContext.getCurrentInstance().reset("frmConceptos:panelConceptos");
             return false;
 
         } else {
             conceptosService.agregaConcepto(conceptosDePago);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Concepto Agregado"));
             RequestContext.getCurrentInstance().update("frmListaConcetpos:tblConceptos");
-            RequestContext.getCurrentInstance().reset("frmConceptos:panel");
+            RequestContext.getCurrentInstance().reset("frmConceptos:panelConceptos");
             return true;
         }
     }
@@ -59,8 +61,6 @@ public class ConceptosController implements Serializable {
 
         RequestContext.getCurrentInstance().update("frmListaConcetpos:tblConceptos");
     }
-
-
 
 
     public ConceptosController() {
