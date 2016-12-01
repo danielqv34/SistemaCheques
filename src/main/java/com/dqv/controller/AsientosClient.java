@@ -2,17 +2,15 @@ package com.dqv.controller;
 
 import com.dqv.Entities.ChequesGenerados;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import javax.annotation.PostConstruct;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
+
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
 
 
 /**
