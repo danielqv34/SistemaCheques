@@ -1,6 +1,5 @@
 package com.dqv.controller;
 
-import com.dqv.Entities.Proveedores;
 import com.dqv.Entities.SolicitudDeCheque;
 import com.dqv.services.SolicitudDeCheques.SolicitudChequesService;
 import com.dqv.validations.CuentasValidator;
@@ -44,28 +43,36 @@ public class SolicitudesController {
             if (validations.validaCuentaContable(solicitudDeCheque.getCuentaContableProveedor()) == true) {
 
                 solicitudChequesService.agregaSolicitud(solicitudDeCheque);
-
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Solicitud Enviada"));
                 RequestContext.getCurrentInstance().update("frmListaSolicitudes:tblSolc");
 
                 RequestContext.getCurrentInstance().reset("frmSolicitudes:panel");
 
 
             } else {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No existe esta cuenta contable para este Proveedor"));
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "No existe esta cuenta contable para este Proveedor"));
                 return false;
             }
 
         } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Error", "No existe este  Proveedor"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "No existe este  Proveedor"));
             return false;
         }
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se Pudo Crear la Solicitud"));
         return false;
     }
 
     public void procesaCheque() {
-        validator.callProcesaCheque();
-        RequestContext.getCurrentInstance().update("frmListaSolicitudes:tblSolc");
+        if (validator.callProcesaCheque() == true) {
+            RequestContext.getCurrentInstance().update("frmListaSolicitudes:tblSolc");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Correcto", "Cheque Generado"));
+            RequestContext.getCurrentInstance().update("frmListaSolicitudes:tblSolc");
+            RequestContext.getCurrentInstance().reset("frmSolicitudes:panel");
+        } else {
+            RequestContext.getCurrentInstance().update("frmListaSolicitudes:tblSolc");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Correcto", "Cheque Generado"));
+            RequestContext.getCurrentInstance().update("frmListaSolicitudes:tblSolc");
+            RequestContext.getCurrentInstance().reset("frmSolicitudes:panel");
+        }
 
     }
 

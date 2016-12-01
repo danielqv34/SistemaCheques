@@ -1,10 +1,10 @@
 package com.dqv.Entities;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 /**
- * Created by ezequ on 11/24/2016.
+ * Created by ezequ on 11/30/2016.
  */
 @Entity
 @Table(name = "CHEQUES_RECHAZADOS", schema = "C##DQUIROZ", catalog = "")
@@ -21,6 +21,7 @@ public class ChequesRechazados {
 
     @Id
     @Column(name = "ID", nullable = false, precision = 0)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -30,7 +31,7 @@ public class ChequesRechazados {
     }
 
     @Basic
-    @Column(name = "NUM_CHEQUE", nullable = true, precision = 0)
+    @Column(name = "NUM_CHEQUE", nullable = true, precision = 0 ,insertable = false)
     public Integer getNumCheque() {
         return numCheque;
     }
@@ -40,7 +41,7 @@ public class ChequesRechazados {
     }
 
     @Basic
-    @Column(name = "DESCRIPCION_RECHAZO", nullable = true, length = 200)
+    @Column(name = "DESCRIPCION_RECHAZO", nullable = true, length = 200,insertable = false)
     public String getDescripcionRechazo() {
         return descripcionRechazo;
     }
@@ -90,7 +91,7 @@ public class ChequesRechazados {
     }
 
     @Basic
-    @Column(name = "ESTADO", nullable = true, length = 2)
+    @Column(name = "ESTADO", nullable = true, length = 2,insertable = false)
     public String getEstado() {
         return estado;
     }
@@ -100,7 +101,7 @@ public class ChequesRechazados {
     }
 
     @Basic
-    @Column(name = "FECHA_RECHAZO", nullable = true)
+    @Column(name = "FECHA_RECHAZO", nullable = true,insertable = false)
     public Date getFechaRechazo() {
         return fechaRechazo;
     }
@@ -109,41 +110,5 @@ public class ChequesRechazados {
         this.fechaRechazo = fechaRechazo;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
 
-        ChequesRechazados that = (ChequesRechazados) object;
-
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (numCheque != null ? !numCheque.equals(that.numCheque) : that.numCheque != null) return false;
-        if (descripcionRechazo != null ? !descripcionRechazo.equals(that.descripcionRechazo) : that.descripcionRechazo != null)
-            return false;
-        if (cuentaContableProveedor != null ? !cuentaContableProveedor.equals(that.cuentaContableProveedor) : that.cuentaContableProveedor != null)
-            return false;
-        if (cuentaContableBanco != null ? !cuentaContableBanco.equals(that.cuentaContableBanco) : that.cuentaContableBanco != null)
-            return false;
-        if (montoRechazado != null ? !montoRechazado.equals(that.montoRechazado) : that.montoRechazado != null)
-            return false;
-        if (montoActual != null ? !montoActual.equals(that.montoActual) : that.montoActual != null) return false;
-        if (estado != null ? !estado.equals(that.estado) : that.estado != null) return false;
-        if (fechaRechazo != null ? !fechaRechazo.equals(that.fechaRechazo) : that.fechaRechazo != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (numCheque != null ? numCheque.hashCode() : 0);
-        result = 31 * result + (descripcionRechazo != null ? descripcionRechazo.hashCode() : 0);
-        result = 31 * result + (cuentaContableProveedor != null ? cuentaContableProveedor.hashCode() : 0);
-        result = 31 * result + (cuentaContableBanco != null ? cuentaContableBanco.hashCode() : 0);
-        result = 31 * result + (montoRechazado != null ? montoRechazado.hashCode() : 0);
-        result = 31 * result + (montoActual != null ? montoActual.hashCode() : 0);
-        result = 31 * result + (estado != null ? estado.hashCode() : 0);
-        result = 31 * result + (fechaRechazo != null ? fechaRechazo.hashCode() : 0);
-        return result;
-    }
 }

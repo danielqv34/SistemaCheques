@@ -1,11 +1,74 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, denengados"/>
-</f:view>
-</html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="subheader">
+        <h3>Consulta de Cheques Generados</h3>
+    </ui:define>
+
+
+    <ui:define name="content">
+
+        <div class="Container100">
+            <div class="ContainerIndent">
+                <div class="Card ShadowEffect  ">
+                    <div class="Container100">
+                        <div class="ContainerIndent">
+                            <h:form id="frmListaSolicitudes">
+                                <p:outputLabel value="Buscar: " for="rnc"></p:outputLabel>
+                                <p:inputText placeholder="Buscar Cheque por proveedor" id="rnc" size="40"
+                                             value="#{solicitudesController.solicitudDeCheque.rncCedulaProveedor}"/>
+                                <br/>
+                                <br/>
+                                <p:dataTable id="tblSolc" var="chequesRechazados"
+                                             value="#{vistaChequesController.listarChequesRechazados()}"
+                                             rowKey="#{vistaChequesController.chequesRechazados.id}"
+                                             rows="10" paginator="true"
+                                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                             rowsPerPageTemplate="5,10,15"
+                                             emptyMessage="No existen solicitudes"
+                                             reflow="true">
+                                    <f:facet name="header">
+
+                                        Lista de Cheques Rechezados
+                                    </f:facet>
+
+                                    <p:column headerText="No.Cheque" sortBy="#{chequesRechazados.numCheque}">
+                                        <h:outputText value="#{chequesRechazados.numCheque}"/>
+                                    </p:column>
+                                    <p:column headerText="Descripcion"
+                                              sortBy="#{chequesRechazados.descripcionRechazo}">
+                                        <h:outputText value="#{chequesRechazados.descripcionRechazo}"/>
+                                    </p:column>
+                                    <p:column headerText="Monto Rechazo" sortBy="#{chequesRechazados.montoRechazado}">
+                                        <h:outputText value="#{chequesRechazados.montoRechazado}"/>
+                                    </p:column>
+                                    <p:column headerText="Balance Proveedor" sortBy="#{chequesRechazados.montoActual}">
+                                        <h:outputText value="#{chequesRechazados.montoActual}"/>
+                                    </p:column>
+                                    <p:column headerText="Cuenta Contable Proveedor"
+                                              sortBy="#{chequesRechazados.cuentaContableProveedor}">
+                                        <h:outputText value="#{chequesRechazados.cuentaContableProveedor}"/>
+                                    </p:column>
+                                    <p:column headerText="Cuenta Contable Banco"
+                                              sortBy="#{chequesRechazados.cuentaContableBanco}">
+                                        <h:outputText value="#{chequesRechazados.cuentaContableBanco}"/>
+                                    </p:column>
+                                    <p:column headerText="Estado" sortBy="#{chequesRechazados.estado}">
+                                        <h:outputText value="#{chequesRechazados.estado}"/>
+                                    </p:column>
+                                    <p:column headerText="Fecha de Registro" sortBy="#{chequesRechazados.fechaRechazo}">
+                                        <h:outputText value="#{chequesRechazados.fechaRechazo}"/>
+                                    </p:column>
+                                </p:dataTable>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

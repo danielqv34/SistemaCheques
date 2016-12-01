@@ -62,7 +62,7 @@ public class SolicitudDeCheque {
     }
 
     @Basic
-    @Column(name = "ID_CUENTA_CONT", nullable = false, precision = 0)
+    @Column(name = "ID_CUENTA_CONT", nullable = true, precision = 0,insertable = false)
     public Integer getIdCuentaCont() {
         return idCuentaCont;
     }
@@ -121,45 +121,5 @@ public class SolicitudDeCheque {
         this.cuentaContableBanco = cuentaContableBanco;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
 
-        SolicitudDeCheque that = (SolicitudDeCheque) object;
-
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (numeroDeSolicitud != null ? !numeroDeSolicitud.equals(that.numeroDeSolicitud) : that.numeroDeSolicitud != null)
-            return false;
-        if (rncCedulaProveedor != null ? !rncCedulaProveedor.equals(that.rncCedulaProveedor) : that.rncCedulaProveedor != null)
-            return false;
-        if (tipoMovimiento != null ? !tipoMovimiento.equals(that.tipoMovimiento) : that.tipoMovimiento != null)
-            return false;
-        if (idCuentaCont != null ? !idCuentaCont.equals(that.idCuentaCont) : that.idCuentaCont != null) return false;
-        if (monto != null ? !monto.equals(that.monto) : that.monto != null) return false;
-        if (fechaDeRegistro != null ? !fechaDeRegistro.equals(that.fechaDeRegistro) : that.fechaDeRegistro != null)
-            return false;
-        if (estado != null ? !estado.equals(that.estado) : that.estado != null) return false;
-        if (cuentaContableProveedor != null ? !cuentaContableProveedor.equals(that.cuentaContableProveedor) : that.cuentaContableProveedor != null)
-            return false;
-        if (cuentaContableBanco != null ? !cuentaContableBanco.equals(that.cuentaContableBanco) : that.cuentaContableBanco != null)
-            return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (numeroDeSolicitud != null ? numeroDeSolicitud.hashCode() : 0);
-        result = 31 * result + (rncCedulaProveedor != null ? rncCedulaProveedor.hashCode() : 0);
-        result = 31 * result + (tipoMovimiento != null ? tipoMovimiento.hashCode() : 0);
-        result = 31 * result + (idCuentaCont != null ? idCuentaCont.hashCode() : 0);
-        result = 31 * result + (monto != null ? monto.hashCode() : 0);
-        result = 31 * result + (fechaDeRegistro != null ? fechaDeRegistro.hashCode() : 0);
-        result = 31 * result + (estado != null ? estado.hashCode() : 0);
-        result = 31 * result + (cuentaContableProveedor != null ? cuentaContableProveedor.hashCode() : 0);
-        result = 31 * result + (cuentaContableBanco != null ? cuentaContableBanco.hashCode() : 0);
-        return result;
-    }
 }

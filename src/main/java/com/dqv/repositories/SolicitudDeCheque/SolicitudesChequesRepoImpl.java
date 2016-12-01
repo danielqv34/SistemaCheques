@@ -36,7 +36,7 @@ public class SolicitudesChequesRepoImpl extends ObtenerSession implements Solici
 
     @Override
     public List<SolicitudDeCheque> lisSolicitudDeCheques() throws SQLException {
-        return getSession().createQuery("from SolicitudDeCheque ").list();
+        return getSession().createQuery("from SolicitudDeCheque order by fechaDeRegistro desc ").list();
     }
 
 }

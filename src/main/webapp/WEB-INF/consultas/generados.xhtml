@@ -1,11 +1,88 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, generados"/>
-</f:view>
-</html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="subheader">
+        <h3>Consulta de Cheques Generados</h3>
+    </ui:define>
+
+
+    <ui:define name="content">
+
+        <div class="Container100">
+            <div class="ContainerIndent">
+                <div class="Card ShadowEffect  ">
+                    <div class="Container100">
+                        <div class="ContainerIndent">
+                            <h:form id="frmListaSolicitudes">
+                                <p:column>
+                                    <p:outputLabel value="Buscar: " for="rnc"></p:outputLabel>
+                                    <p:inputText placeholder="Buscar Cheque por proveedor" id="rnc" size="40"
+                                                 value="#{solicitudesController.solicitudDeCheque.rncCedulaProveedor}"/>
+                                </p:column>
+                                <p:column>
+                                    <p:commandButton actionListener="#{conceptosController.agregaConcepeto()}" ajax="true" type="Reset"
+                                                     value="Buscar"/>
+                                </p:column>
+
+                                <br/>
+                                <br/>
+                                <p:dataTable id="tblSolc" var="chequesGenerados"
+                                             value="#{vistaChequesController.listarChequesGenerados()}"
+                                             rowKey="#{vistaChequesController.chequesGenerados.id}"
+                                             rows="10" paginator="true"
+                                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                             rowsPerPageTemplate="5,10,15"
+                                             emptyMessage="No existen cheques Generados"
+                                             reflow="true">
+                                    <f:facet name="header">
+
+                                        Lista de Cheques Aprobados
+                                    </f:facet>
+
+                                    <p:column headerText="No.Cheque" sortBy="#{chequesGenerados.numCheque}">
+                                        <h:outputText value="#{chequesGenerados.numCheque}"/>
+                                    </p:column>
+                                    <p:column headerText="Descripcion"
+                                              sortBy="#{chequesGenerados.descripcion}">
+                                        <h:outputText value="#{chequesGenerados.descripcion}"/>
+                                    </p:column>
+                                    <p:column headerText="Auxiliar" sortBy="#{chequesGenerados.auxiliar}">
+                                        <h:outputText value="#{chequesGenerados.auxiliar}"/>
+                                    </p:column>
+                                    <p:column headerText="Tipo Movimiento" sortBy="#{chequesGenerados.tipoMovimiento}">
+                                        <h:outputText value="#{chequesGenerados.tipoMovimiento}"/>
+                                    </p:column>
+                                    <p:column headerText="Cuenta en Contabilidad" sortBy="#{chequesGenerados.idCuentaCont}">
+                                        <h:outputText value="#{chequesGenerados.idCuentaCont}"/>
+                                    </p:column>
+                                    <p:column headerText="Cuenta Proveedor" sortBy="#{chequesGenerados.cuentaContableProveedor}">
+                                        <h:outputText value="#{chequesGenerados.cuentaContableProveedor}"/>
+                                    </p:column>
+                                    <p:column headerText="Cuenta Banco" sortBy="#{chequesGenerados.cuentaContableBanco}">
+                                        <h:outputText value="#{chequesGenerados.cuentaContableBanco}"/>
+                                    </p:column>
+                                    <p:column headerText="Monto"
+                                              sortBy="#{chequesGenerados.monto}">
+                                        <h:outputText value="#{chequesGenerados.monto}"/>
+                                    </p:column>
+                                    <p:column headerText="Estado"
+                                              sortBy="#{chequesGenerados.estado}">
+                                        <h:outputText value="#{chequesGenerados.estado}"/>
+                                    </p:column>
+                                    <p:column headerText="Fecha Generado"
+                                              sortBy="#{chequesGenerados.fechaGeneracion}">
+                                        <h:outputText value="#{chequesGenerados.fechaGeneracion}"/>
+                                    </p:column>
+                                </p:dataTable>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

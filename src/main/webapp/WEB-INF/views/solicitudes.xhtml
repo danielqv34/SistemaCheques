@@ -27,10 +27,7 @@
                                     <p:outputLabel value="Tipo Movimiento: " for="tm"></p:outputLabel>
                                     <p:inputText placeholder="Tipo Movimiento" id="tm" required="true" size="40"
                                                  value="#{solicitudesController.solicitudDeCheque.tipoMovimiento}"/>
-                                    <br/>
-                                    <p:outputLabel value="Cuenta en Contabilidad: " for="cc"></p:outputLabel>
-                                    <p:inputText placeholder="Cuenta en Contabilidad" id="cc" required="true"
-                                                 value="#{solicitudesController.solicitudDeCheque.idCuentaCont}"/>
+
                                     <br/>
                                     <p:outputLabel value="Monto: " for="mcheque"></p:outputLabel>
                                     <p:inputText placeholder="Monto del Cheque" id="mcheque" required="true"
@@ -72,6 +69,7 @@
                                                                  emptyMessage="No existen solicitudes"
                                                                  reflow="true">
                                                         <f:facet name="header">
+
                                                           Lista de Solicitudes
                                                         </f:facet>
 
@@ -86,9 +84,6 @@
                                                         </p:column>
                                                         <p:column headerText="Tipo Movimiento" sortBy="#{solicitudes.tipoMovimiento}">
                                                             <h:outputText value="#{solicitudes.tipoMovimiento}"/>
-                                                        </p:column>
-                                                        <p:column headerText="Cuenta Contable" sortBy="#{solicitudes.idCuentaCont}">
-                                                            <h:outputText value="#{solicitudes.idCuentaCont}"/>
                                                         </p:column>
                                                         <p:column headerText="Monto" sortBy="#{solicitudes.monto}">
                                                             <h:outputText value="#{solicitudes.monto}"/>
@@ -105,13 +100,14 @@
                                                         <p:column headerText="Cuenta Contable Banco" sortBy="#{solicitudes.cuentaContableBanco}">
                                                             <h:outputText value="#{solicitudes.cuentaContableBanco}"/>
                                                         </p:column>
-                                                        <p:column style="text-align:center;">
-                                                            <p:commandButton value="Procesar" actionListener="#{solicitudesController.procesaCheque()}"/>
-                                                        </p:column>
+
                                                         <p:column style="text-align:center;">
                                                             <p:commandButton value="Eliminar" actionListener="#{solicitudesController.borraSolicitud(solicitudes.id)}"/>
                                                         </p:column>
                                                     </p:dataTable>
+                                                    <p:column style="text-align:center;">
+                                                        <p:commandButton value="Procesar" actionListener="#{solicitudesController.procesaCheque()}"/>
+                                                    </p:column>
                                                 </h:form>
                                             </div>
                                         </div>
