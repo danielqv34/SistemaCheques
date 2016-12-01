@@ -35,6 +35,9 @@ public class SolicitudesController {
     @Autowired
     private CuentasValidator validator;
 
+    @Autowired
+    private AsientosClient client;
+
 
     public boolean creaSolicitud() throws SQLException {
 
@@ -63,10 +66,12 @@ public class SolicitudesController {
 
     public void procesaCheque() {
         if (validator.callProcesaCheque() == true) {
+            client.envio();
             RequestContext.getCurrentInstance().update("frmListaSolicitudes:tblSolc");
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Correcto", "Cheque Generado"));
             RequestContext.getCurrentInstance().update("frmListaSolicitudes:tblSolc");
             RequestContext.getCurrentInstance().reset("frmSolicitudes:panel");
+
         } else {
             RequestContext.getCurrentInstance().update("frmListaSolicitudes:tblSolc");
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Correcto", "Cheque Generado"));
@@ -124,4 +129,11 @@ public class SolicitudesController {
         this.validator = validator;
     }
 
+    public AsientosClient getClient() {
+        return client;
+    }
+
+    public void setClient(AsientosClient client) {
+        this.client = client;
+    }
 }
